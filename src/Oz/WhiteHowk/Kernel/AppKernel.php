@@ -9,6 +9,14 @@
 namespace Oz\WhiteHowk\Kernel;
 
 
+/**
+ * Class AppKernel
+ * @package Oz\WhiteHowk\Kernel
+ */
 class AppKernel {
+
+    public function boot(){
+
+    }
 
 } 

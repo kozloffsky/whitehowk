@@ -26,6 +26,7 @@ class Application {
 
     private $_rootDir;
     private $_env;
+    private $_autoloader;
 
     /**
      * Constructor
@@ -39,7 +40,13 @@ class Application {
     }
 
     private function init(){
+        $this->initializeAutoloader();
         $this->initializeDI();
+    }
+
+    private function initializeAutoloader(){
+        $this->_autoloader = require $this->_rootDir.DIRECTORY_SEPARATOR
+            .'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
     }
 
     private function initializeDI(){

@@ -5,6 +5,13 @@
 
     <parameters>
         <parameter key="test.service.class">\Oz\WhiteHowk\Kernel\ContainerProviderTestService</parameter>
+        <!--
+        Here place for modules registration
+        Add modules namespaces
+        -->
+        <parameter key="app.modules" type="collection">
+            <parameter>\Oz\WhiteHowk\Module\Page</parameter>
+        </parameter>
     </parameters>
     <services>
         <service id="test.service1" class="%test.service.class%">

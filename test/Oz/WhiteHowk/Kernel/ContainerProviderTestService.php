@@ -12,6 +12,10 @@ namespace Oz\WhiteHowk\Kernel;
 class ContainerProviderTestService {
     private $_testInstance;
 
+    public function __construct(){
+
+    }
+
     public function set(ContainerProviderTestService $testService){
         $this->_testInstance = $testService;
     }

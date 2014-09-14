@@ -19,6 +19,9 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
  * @package Oz\WhiteHowk\Kernel
  */
 class ContainerProvider {
+    /**
+     * @var \Symfony\Component\DependencyInjection\ContainerBuilder
+     */
     private $_builder;
 
     public function __construct(){

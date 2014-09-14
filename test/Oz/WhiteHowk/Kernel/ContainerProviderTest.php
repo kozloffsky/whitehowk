@@ -8,9 +8,6 @@
 
 namespace Oz\WhiteHowk\Kernel;
 
-use \Oz\WhiteHowk\Kernel\ContainerProviderTestService as TS;
-
-
 class ContainerProviderTest extends \PHPUnit_Framework_TestCase{
 
     public function testAddContext(){
