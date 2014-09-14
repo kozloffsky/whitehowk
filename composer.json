@@ -1,0 +1,33 @@
+{
+    "name": "oz/whitehowk",
+    "type": "cmf",
+    "description": "WhiteHawk Content Management Framework",
+    "keywords": [],
+    "homepage": "http://whcmf.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike Oz",
+            "email": "kozloffsky@gmail.com"
+        }
+    ],
+
+    "require":{
+        "symfony/http-foundation": "2.5.*",
+        "symfony/routing": "2.5.*",
+        "symfony/dependency-injection":"2.5.*",
+        "symfony/yaml":"2.5.*",
+        "symfony/config":"2.5.*",
+        "symfony/proxy-manager-bridge":"2.5.*"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "4.2.*"
+    },
+
+
+    "autoload": {
+        "psr-0": { "Oz": "src/" }
+    }
+
+}

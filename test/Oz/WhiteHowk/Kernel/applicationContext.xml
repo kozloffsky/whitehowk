@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="test.service.class">\Oz\WhiteHowk\Kernel\ContainerProviderTestService</parameter>
+    </parameters>
+    <services>
+        <service id="test.service1" class="%test.service.class%">
+            <file>test\Oz\WhiteHowk\Kernel\ContainerProviderTestService.php</file>
+        </service>
+
+    </services>
+</container>
