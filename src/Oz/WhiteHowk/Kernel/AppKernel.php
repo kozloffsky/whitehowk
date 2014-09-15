@@ -7,6 +7,7 @@
  */
 
 namespace Oz\WhiteHowk\Kernel;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 
 /**
@@ -14,7 +15,12 @@ namespace Oz\WhiteHowk\Kernel;
  * @package Oz\WhiteHowk\Kernel
  */
 class AppKernel {
+    /**
+     * @var ModuleResolver
+     */
     private $_moduleResolver;
+
+    private $_eventDispatcher;
 
     public function setModuleResolver(ModuleResolver $moduleResolver){
         $this->_moduleResolver = $moduleResolver;
@@ -24,12 +30,13 @@ class AppKernel {
         return $this->_moduleResolver;
     }
 
+    public function setEventDispatcher(EventDispatcherInterface $dispatcher){
+        $this->_eventDispatcher = $dispatcher;
+    }
+
     public function boot(){
+        $this->_moduleResolver->resolve();
 
+        $this->_eventDispatcher->dispatch(KernelEvent::BOOT, new KernelEvent());
     }
-
-    public function registerEventDispatcher(){
-        
-    }
-
-} 
+}

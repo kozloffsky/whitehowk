@@ -18,7 +18,9 @@
         "symfony/dependency-injection":"2.5.*",
         "symfony/yaml":"2.5.*",
         "symfony/config":"2.5.*",
-        "symfony/proxy-manager-bridge":"2.5.*"
+        "symfony/proxy-manager-bridge":"2.5.*",
+        "symfony/event-dispatcher":"2.5.*",
+        "symfony/http-kernel":"2.5.*"
     },
 
     "require-dev": {
@@ -28,6 +30,10 @@
 
     "autoload": {
         "psr-0": { "Oz": "src/" }
+    },
+
+    "autoload-dev": {
+        "psr-0": { "Oz": "test/" }
     }
 
 }

@@ -11,7 +11,10 @@ namespace Oz\WhiteHowk\Kernel;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
+use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
 
 /**
  * Class ContainerProvider
@@ -27,6 +30,19 @@ class ContainerProvider {
     public function __construct(){
         $this->_builder = new ContainerBuilder();
         $this->_builder->set('container_provider',$this);
+        // register the event dispatcher service
+        $this->registerEventDispatcher();
+
+    }
+
+    protected function registerEventDispatcher(){
+        $listener = new Definition('Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher');
+        $listener->addArgument($this->_builder);
+        $this->_builder->setDefinition(
+            'event_dispatcher',
+            $listener
+        );
+        $this->_builder->addCompilerPass(new RegisterListenersPass());
     }
 
     public function provide(){

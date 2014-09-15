@@ -21,6 +21,10 @@
             <file>test\Oz\WhiteHowk\Kernel\ContainerProviderTestService.php</file>
         </service>
 
+        <service id="test.event_listener" class="\Oz\WhiteHowk\Kernel\TestEventListener">
+            <tag name="kernel.event_listener" event="kernel.test" method="onTestEvent"/>
+        </service>
+
         <service id="kernel.app_kernel" class="%kernel.app_kernel.class%">
             <call method="setModuleResolver">
                 <argument type="service" id="kernel.module_resolver" />
