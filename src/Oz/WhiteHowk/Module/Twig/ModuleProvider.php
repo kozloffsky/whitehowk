@@ -2,11 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: miho
- * Date: 15.09.14
- * Time: 14:59
+ * Date: 16.09.14
+ * Time: 1:22
  */
 
-namespace Oz\WhiteHowk\Module\Page;
+namespace Oz\WhiteHowk\Module\Twig;
 
 
 use Oz\WhiteHowk\Kernel\ModuleProviderInterface;
@@ -19,7 +19,7 @@ class ModuleProvider implements ModuleProviderInterface{
      */
     public function getName()
     {
-        return 'oz/page';
+        return 'oz/twig';
     }
 
     /**
@@ -28,9 +28,7 @@ class ModuleProvider implements ModuleProviderInterface{
      */
     public function getDependency()
     {
-        return array(
-            'oz/twig'
-        );
+        return array();
     }
 
     /**
@@ -44,4 +42,5 @@ class ModuleProvider implements ModuleProviderInterface{
         // TODO: Implement boot() method.
     }
 
-}
+
+} 

@@ -10,6 +10,14 @@ namespace Oz\WhiteHowk\Kernel;
 
 class ContainerProviderTest extends \PHPUnit_Framework_TestCase{
 
+    public function testContainerProviderInstance(){
+        $provider = new ContainerProvider();
+        $provider->addContext(__DIR__.DIRECTORY_SEPARATOR.'applicationContext.xml');
+        $context = $provider->provide();
+        $testService = $context->get('container_provider');
+        $this->assertSame($provider, $testService);
+    }
+
     public function testAddContext(){
         $provider = new ContainerProvider();
         $provider->addContext(__DIR__.DIRECTORY_SEPARATOR.'applicationContext.xml');

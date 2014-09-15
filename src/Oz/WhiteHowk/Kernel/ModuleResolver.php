@@ -27,10 +27,14 @@ class ModuleResolver {
      */
     private $_modules;
 
+
+    /**
+     * @var ContainerProvider
+     */
     private $_containerProvider;
 
     public function __construct(){
-        $this->_providers = [];
+        $this->_providers = array();
     }
 
     /**
@@ -60,7 +64,9 @@ class ModuleResolver {
     }
 
     public function resolve(){
-
+        foreach($this->_providers as $name=>$provider){
+            $this->bootModule($name);
+        }
     }
 
     public function bootModule($name){
@@ -87,6 +93,7 @@ class ModuleResolver {
 
         $moduleDir = $this->getModuleDirectory($provider);
 
+        $this->_containerProvider->addContext($moduleDir.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'moduleContext.xml');
     }
 
     public function setContainerProvider(ContainerProvider $provider){

@@ -26,6 +26,7 @@ class ContainerProvider {
 
     public function __construct(){
         $this->_builder = new ContainerBuilder();
+        $this->_builder->set('container_provider',$this);
     }
 
     public function provide(){

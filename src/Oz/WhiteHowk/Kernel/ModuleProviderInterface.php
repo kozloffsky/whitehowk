@@ -9,6 +9,8 @@
 namespace Oz\WhiteHowk\Kernel;
 
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 interface ModuleProviderInterface {
     /**
      * Return module name in format {$vendor/$name}
@@ -21,4 +23,12 @@ interface ModuleProviderInterface {
      * @return array
      */
     public function getDependency();
+
+    /**
+     * Configure module services and provide shared
+     *
+     * @param ContainerBuilder $container
+     * @return void
+     */
+    public function boot(ContainerBuilder $container);
 }

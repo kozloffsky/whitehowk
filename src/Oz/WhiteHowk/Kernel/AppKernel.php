@@ -28,4 +28,8 @@ class AppKernel {
 
     }
 
+    public function registerEventDispatcher(){
+        
+    }
+
 } 

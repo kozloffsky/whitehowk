@@ -12,6 +12,7 @@
         -->
         <parameter key="app.modules" type="collection">
             <parameter>\Oz\WhiteHowk\Module\Page</parameter>
+            <parameter>\Oz\WhiteHowk\Module\Twig</parameter>
         </parameter>
     </parameters>
     <services>
@@ -30,6 +31,9 @@
             <argument>%app.modules%</argument>
             <call method="setNamespaces">
                 <argument>%app.modules%</argument>
+            </call>
+            <call method="setContainerProvider">
+                <argument type="service" id="container_provider" />
             </call>
         </service>
 
