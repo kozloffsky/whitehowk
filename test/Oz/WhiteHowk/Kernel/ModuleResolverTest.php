@@ -15,7 +15,8 @@ class ModuleResolverTest extends \PHPUnit_Framework_TestCase{
         $resolver = new ModuleResolver();
         $path = $resolver->getModuleDirectory('\Oz\WhiteHowk\Kernel\ModuleResolverTest');
         $this->assertEquals($path, __DIR__);
+
+        $path = $resolver->getModuleDirectory($this);
+        $this->assertEquals($path, __DIR__);
     }
-
-
-} 
+}

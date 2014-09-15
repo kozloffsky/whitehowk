@@ -10,7 +10,15 @@ namespace Oz\WhiteHowk\Kernel;
 
 
 interface ModuleProviderInterface {
+    /**
+     * Return module name in format {$vendor/$name}
+     * @return string
+     */
+    public function getName();
 
-    public function getDir();
-
+    /**
+     * Return array of module names
+     * @return array
+     */
+    public function getDependency();
 }
