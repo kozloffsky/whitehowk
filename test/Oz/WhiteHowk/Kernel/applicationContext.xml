@@ -5,6 +5,7 @@
 
     <parameters>
         <parameter key="test.service.class">\Oz\WhiteHowk\Kernel\ContainerProviderTestService</parameter>
+        <parameter key="kernel.app_kernel.class">\Oz\WhiteHowk\Kernel\AppKernel</parameter>
         <!--
         Here place for modules registration
         Add modules namespaces
@@ -14,8 +15,22 @@
         </parameter>
     </parameters>
     <services>
+
         <service id="test.service1" class="%test.service.class%">
             <file>test\Oz\WhiteHowk\Kernel\ContainerProviderTestService.php</file>
+        </service>
+
+        <service id="kernel.app_kernel" class="%kernel.app_kernel.class%">
+            <call method="setModuleResolver">
+                <argument type="service" id="kernel.module_resolver" />
+            </call>
+        </service>
+
+        <service id="kernel.module_resolver" class="\Oz\WhiteHowk\Kernel\ModuleResolver">
+            <argument>%app.modules%</argument>
+            <call method="setNamespaces">
+                <argument>%app.modules%</argument>
+            </call>
         </service>
 
     </services>

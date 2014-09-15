@@ -19,10 +19,18 @@ class ModuleResolver {
     const RESOURCES_PATH = 'Resources';
     const MODULE_PROVIDER_CLASS_NAME = 'ModuleProvider';
 
-    private $_namespaces;
+    private $_providers;
+
+    /**
+     * Array of initialized modules
+     * @var array
+     */
+    private $_modules;
+
+    private $_containerProvider;
 
     public function __construct(){
-        $this->_namespaces = [];
+        $this->_providers = [];
     }
 
     /**
@@ -31,7 +39,7 @@ class ModuleResolver {
      * 2. Make dependency tree
      * 3. Load modules contexts
      */
-    public function initializeModule($namespace){
+    public function registerModule($namespace){
         $providerName = $namespace.'\\'.self::MODULE_PROVIDER_CLASS_NAME;
         if(!class_exists($providerName)){
             throw new \Exception('NoModuleProvider');
@@ -42,7 +50,47 @@ class ModuleResolver {
             throw new \Exception('Bad Module provider');
         }
 
-        $this->_namespaces[$namespace] = $provider;
+        $this->_providers[$provider->getName()] = $provider;
+    }
+
+    public function setNamespaces($namespaces){
+        foreach($namespaces as $ns){
+            $this->registerModule($ns);
+        }
+    }
+
+    public function resolve(){
+
+    }
+
+    public function bootModule($name){
+        if(!isset($this->_providers[$name])){
+            throw new \Exception('module does not registered');
+        }
+
+        $provider = $this->_providers[$name];
+        $deps = $provider->getDependency();
+        foreach($deps as $dependency){
+            // module already booted
+            if(isset($this->_modules[$dependency])){
+                continue;
+            }
+
+            //Is dependency registered. if not - throw exception
+            if(!isset($this->_providers[$dependency])){
+                throw new \Exception('Dependency does not found');
+            }
+
+            //Boot dependency
+            $this->bootModule($dependency);
+        }
+
+        $moduleDir = $this->getModuleDirectory($provider);
+
+    }
+
+    public function setContainerProvider(ContainerProvider $provider){
+        $this->_containerProvider = $provider;
     }
 
     public function getModuleDirectory($moduleProviderClass){

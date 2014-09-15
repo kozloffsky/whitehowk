@@ -5,6 +5,9 @@
 
     <parameters>
         <parameter key="env">prod</parameter>
+        <parameter key="modules" type="collection">
+            <parameter>\Oz\WhiteHowk\Module\Page</parameter>
+        </parameter>
     </parameters>
 
     <services>
