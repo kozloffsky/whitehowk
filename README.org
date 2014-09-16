@@ -1,5 +1,5 @@
 * WhiteHawk CMF
-
+  
 ** Architecture
 
 *** Application
@@ -7,6 +7,10 @@
 *** Kernel
 
 *** Modules
+    Modules acts like plugins.
+#+BEGIN_SRC javascript
+  function(){}
+#+END_SRC
 
 *** DI
 

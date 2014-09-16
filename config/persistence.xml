@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<config>
+    <propel>
+        <database>
+            <connections>
+                <connection id="prod">
+                    <adapter>mysql</adapter>
+                    <classname>Propel\Runtime\Connection\ConnectionWrapper</classname>
+                    <dsn>mysql:host=localhost;dbname=proddb</dsn>
+                    <user>my_db_user</user>
+                    <password>s3cr3t</password>
+                </connection>
+                <connection id="dev">
+                    <adapter>sqlite</adapter>
+                    <classname>Propel\Runtime\Connection\ConnectionWrapper</classname>
+                    <dsn>sqlite:/data.db</dsn>
+                    <user></user>
+                    <password></password>
+                </connection>
+                <connection id="test">
+                    <adapter>mysql</adapter>
+                    <classname>Propel\Runtime\Connection\ConnectionWrapper</classname>
+                    <dsn>sqlite:/test.db</dsn>
+                    <user></user>
+                    <password></password>
+                </connection>
+            </connections>
+        </database>
+        <runtime>
+            <defaultConnection>bookstore</defaultConnection>
+            <connection>bookstore</connection>
+        </runtime>
+        <generator>
+            <defaultConnection>bookstore</defaultConnection>
+            <connection>bookstore</connection>
+        </generator>
+    </propel>
+</config>
