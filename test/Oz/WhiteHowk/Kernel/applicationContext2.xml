@@ -8,7 +8,6 @@
     </parameters>
     <services>
         <service id="test.service2" class="%test.service.class%">
-            <file>test\Oz\WhiteHowk\Kernel\ContainerProviderTestService.php</file>
             <call method="set">
                 <argument type="service" id="test.service1" />
             </call>

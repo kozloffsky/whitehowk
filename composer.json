@@ -12,17 +12,25 @@
         }
     ],
 
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/propelorm/Propel2"
+        }
+    ],
+
     "require":{
-        "symfony/console": "2.5.*",
+        "symfony/console": "2.4.*",
         "symfony/http-foundation": "2.5.*",
         "symfony/routing": "2.5.*",
         "symfony/dependency-injection":"2.5.*",
-        "symfony/yaml":"2.5.*",
-        "symfony/config":"2.5.*",
+        "symfony/yaml":"2.4.*",
+        "symfony/config":"2.4.*",
         "symfony/proxy-manager-bridge":"2.5.*",
         "symfony/event-dispatcher":"2.5.*",
         "symfony/http-kernel":"2.5.*",
-        "doctrine/orm": "2.4.*"
+        "propel/propel": "dev-master"
+
     },
 
     "require-dev": {

@@ -17,9 +17,7 @@
     </parameters>
     <services>
 
-        <service id="test.service1" class="%test.service.class%">
-            <file>test\Oz\WhiteHowk\Kernel\ContainerProviderTestService.php</file>
-        </service>
+        <service id="test.service1" class="%test.service.class%" />
 
         <service id="test.event_listener" class="\Oz\WhiteHowk\Kernel\TestEventListener">
             <tag name="kernel.event_listener" event="kernel.test" method="onTestEvent"/>
