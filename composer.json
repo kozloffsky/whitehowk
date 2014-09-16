@@ -44,6 +44,14 @@
 
     "autoload-dev": {
         "psr-0": { "Oz": "test/" }
+    },
+
+    "bin": [
+        "bin/wh"
+    ],
+
+    "config": {
+        "bin-dir": "bin"
     }
 
 }
