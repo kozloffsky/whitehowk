@@ -94,6 +94,8 @@ class ModuleResolver {
         $moduleDir = $this->getModuleDirectory($provider);
 
         $this->_containerProvider->addContext($moduleDir.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'moduleContext.xml');
+
+        $this->_modules[$name] = $provider;
     }
 
     public function setContainerProvider(ContainerProvider $provider){

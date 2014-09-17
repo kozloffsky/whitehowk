@@ -38,7 +38,22 @@
         </service>
 
         <service id="persistence.provider" class="\Oz\WhiteHowk\Persistence\PersistenceProvider">
+            <tag name="service.eager" />
+            <argument type="service" id="persistence.configuration"/>
         </service>
 
+        <service id="persistence.configuration" class="\Propel\Generator\Config\GeneratorConfig">
+            <argument type="string">persistence.xml</argument>
+        </service>
+
+        <!-- commands -->
+        <service id="task.generate_sql_for_schemas" class="Oz\WhiteHowk\Task\GenerateSqlFromSchemas">
+            <argument type="service" id="persistence.configuration" />
+        </service>
+
+        <service id="command.sql_build_command" class="Oz\WhiteHowk\Console\Command\SqlBuildCommand">
+            <argument type="service" id="task.generate_sql_for_schemas" />
+            <tag name="cli.command" />
+        </service>
     </services>
 </container>

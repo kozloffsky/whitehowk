@@ -39,5 +39,14 @@
             </call>
         </service>
 
+        <service id="persistence.provider" class="\Oz\WhiteHowk\Persistence\PersistenceProvider">
+            <tag name="service.eager" />
+            <argument type="service" id="persistence.configuration"/>
+        </service>
+
+        <service id="persistence.configuration" class="\Propel\Generator\Config\GeneratorConfig">
+            <argument type="string">persistence.xml</argument>
+        </service>
+
     </services>
 </container>

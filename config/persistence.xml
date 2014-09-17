@@ -27,12 +27,16 @@
             </connections>
         </database>
         <runtime>
-            <defaultConnection>bookstore</defaultConnection>
-            <connection>bookstore</connection>
+            <defaultConnection>dev</defaultConnection>
+            <connection>dev</connection>
         </runtime>
         <generator>
-            <defaultConnection>bookstore</defaultConnection>
-            <connection>bookstore</connection>
+            <defaultConnection>dev</defaultConnection>
+            <connection>dev</connection>
         </generator>
+        <paths>
+            <sqlDir>sql</sqlDir>
+            <schemaDir>schema</schemaDir>
+        </paths>
     </propel>
 </config>

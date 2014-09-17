@@ -9,6 +9,8 @@
 namespace Oz\WhiteHowk\Persistence;
 
 use Propel\Common\Config\ConfigurationManager;
+use Propel\Generator\Config\GeneratorConfig;
+use Propel\Generator\Config\GeneratorConfigInterface;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
 use Propel\Runtime\Propel;
 
@@ -26,8 +28,8 @@ class PersistenceProvider {
      * Path to configuration file
      * @param $config
      */
-    public function __construct($config){
-        $this->_configurationManager = new ConfigurationManager($config);
+    public function __construct(GeneratorConfigInterface $config){
+        $this->_configurationManager = $config;
         //var_dump($this->_configurationManager->getConfigProperty('database.connections.prod'));
     }
 

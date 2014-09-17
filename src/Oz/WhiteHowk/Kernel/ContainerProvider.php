@@ -9,6 +9,7 @@
 namespace Oz\WhiteHowk\Kernel;
 
 
+use Oz\WhiteHowk\Kernel\DependencyInjection\EagerServicePass;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -32,7 +33,7 @@ class ContainerProvider {
         $this->_builder->set('container_provider',$this);
         // register the event dispatcher service
         $this->registerEventDispatcher();
-
+        $this->_builder->addCompilerPass(new EagerServicePass());
     }
 
     protected function registerEventDispatcher(){
