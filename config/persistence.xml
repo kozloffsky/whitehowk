@@ -13,14 +13,14 @@
                 <connection id="dev">
                     <adapter>sqlite</adapter>
                     <classname>Propel\Runtime\Connection\ConnectionWrapper</classname>
-                    <dsn>sqlite:/data.db</dsn>
+                    <dsn>sqlite:data.db</dsn>
                     <user></user>
                     <password></password>
                 </connection>
                 <connection id="test">
-                    <adapter>mysql</adapter>
+                    <adapter>sqlite</adapter>
                     <classname>Propel\Runtime\Connection\ConnectionWrapper</classname>
-                    <dsn>sqlite:/test.db</dsn>
+                    <dsn>sqlite:test.db</dsn>
                     <user></user>
                     <password></password>
                 </connection>
