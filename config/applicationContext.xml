@@ -25,6 +25,15 @@
             <call method="setModuleResolver">
                 <argument type="service" id="kernel.module_resolver" />
             </call>
+            <call method="setRouter">
+                <argument type="service" id="kernel.router" />
+            </call>
+            <call method="setEventDispatcher">
+                <argument type="service" id="event_dispatcher" />
+            </call>
+            <call method="setControllerDispatcher">
+                <argument type="service" id="kernel.controller_dispatcher" />
+            </call>
         </service>
 
         <service id="kernel.module_resolver" class="\Oz\WhiteHowk\Kernel\ModuleResolver">
@@ -37,6 +46,12 @@
             </call>
         </service>
 
+        <service id="kernel.controller_dispatcher" class="\Oz\WhiteHowk\Kernel\ControllerDispatcher">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
         <service id="persistence.provider" class="\Oz\WhiteHowk\Persistence\PersistenceProvider">
             <tag name="service.eager" />
             <argument type="service" id="persistence.configuration"/>
@@ -44,6 +59,12 @@
 
         <service id="persistence.configuration" class="\Propel\Generator\Config\GeneratorConfig">
             <argument type="string">persistence.xml</argument>
+        </service>
+
+        <service id="kernel.router" class="\Oz\WhiteHowk\Kernel\Router">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
         </service>
 
         <!-- tasks -->

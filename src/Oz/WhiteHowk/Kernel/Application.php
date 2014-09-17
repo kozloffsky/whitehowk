@@ -51,9 +51,10 @@ class Application {
 
     private function initializeDI(){
         $containerProvider = new ContainerProvider();
+        $containerProvider->addContext($this->_rootDir.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'applicationContext.xml');
 
         $container = $containerProvider->provide();
-        $kernel = $container->get('application.kernel');
+        $kernel = $container->get('kernel.app_kernel');
         $kernel->boot();
     }
 
