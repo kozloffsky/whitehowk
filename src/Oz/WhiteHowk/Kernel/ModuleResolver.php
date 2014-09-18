@@ -67,6 +67,7 @@ class ModuleResolver {
         foreach($this->_providers as $name=>$provider){
             $this->bootModule($name);
         }
+        $this->_containerProvider->process();
     }
 
     public function bootModule($name){
@@ -74,6 +75,13 @@ class ModuleResolver {
             throw new \Exception('module does not registered');
         }
 
+        if(isset($this->_modules[$name])){
+            return;
+        }
+
+        /**
+         * @var ModuleProviderInterface
+         */
         $provider = $this->_providers[$name];
         $deps = $provider->getDependency();
         foreach($deps as $dependency){
@@ -96,6 +104,7 @@ class ModuleResolver {
         $this->_containerProvider->addContext($moduleDir.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'moduleContext.xml');
 
         $this->_modules[$name] = $provider;
+        var_dump($name);
     }
 
     public function setContainerProvider(ContainerProvider $provider){
@@ -106,4 +115,5 @@ class ModuleResolver {
         $r = new \ReflectionClass($moduleProviderClass);
         return dirname($r->getFileName());
     }
+
 } 

@@ -43,7 +43,7 @@ class ContainerProvider {
             'event_dispatcher',
             $listener
         );
-        $this->_builder->addCompilerPass(new RegisterListenersPass());
+        //$this->_builder->addCompilerPass( new RegisterListenersPass());
     }
 
     public function provide(){
@@ -58,6 +58,29 @@ class ContainerProvider {
             $loader->load($fileName);
         }catch (\InvalidArgumentException $e){
             throw new ConfigurationException($e->getMessage());
+        }
+    }
+
+    public function process(){
+        $eventListener = $this->_builder->get('event_dispatcher');
+        foreach ($this->_builder->findTaggedServiceIds('kernel.event_listener') as $id => $events) {
+            foreach ($events as $event) {
+                $priority = isset($event['priority']) ? $event['priority'] : 0;
+
+                if (!isset($event['event'])) {
+                    throw new \InvalidArgumentException(sprintf('Service "%s" must define the "event" attribute on "%s" tags.', $id, $this->listenerTag));
+                }
+
+                if (!isset($event['method'])) {
+                    $event['method'] = 'on'.preg_replace_callback(array(
+                            '/(?<=\b)[a-z]/i',
+                            '/[^a-z0-9]/i',
+                        ), function ($matches) { return strtoupper($matches[0]); }, $event['event']);
+                    $event['method'] = preg_replace('/[^a-z0-9]/i', '', $event['method']);
+                }
+
+                $eventListener->addListenerService($event['event'], array($id, $event['method']), $priority);
+            }
         }
     }
 } 

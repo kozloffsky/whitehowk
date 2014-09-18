@@ -12,6 +12,6 @@ namespace Oz\WhiteHowk\Module\Page\Controller;
 class IndexController {
 
     public function indexAction(){
-
+        return "Hello World";
     }
-} 
+}

@@ -7,8 +7,10 @@
  */
 
 namespace Oz\WhiteHowk\Kernel;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -21,6 +23,9 @@ class AppKernel {
      */
     private $_moduleResolver;
 
+    /**
+     * @var EventDispatcher
+     */
     private $_eventDispatcher;
 
     private $_router;
@@ -55,12 +60,14 @@ class AppKernel {
 
     public function boot(){
         $this->_moduleResolver->resolve();
-        $this->_eventDispatcher->dispatch(KernelEvent::BOOT, new KernelEvent());
+
+        $this->_eventDispatcher->dispatch(KernelEvent::BOOT, new KernelEvent(null, null));
 
         $request = Request::createFromGlobals();
-
         $this->_router->route($request);
+        $this->_eventDispatcher->dispatch(KernelEvent::PRE_DISPATCH, new KernelEvent($request, null));
         $response = $this->_controllerDispatcher->dispatch($request);
-
+        $this->_eventDispatcher->dispatch(KernelEvent::POST_DISPATCH, new KernelEvent($request, $response));
+        $response->send();
     }
 }
