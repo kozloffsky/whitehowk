@@ -1,4 +1,8 @@
 * WhiteHawk CMF
+  Whitehowk is framework for building web apps starting from basic MVC app
+  finishing large enterprise ready applications. Most of funstionality placed on
+  separate units called modules. Core features provides controll over this modules
+  and base funstions like routing, serice container and event dispatching.
   
 ** Architecture
 
@@ -19,3 +23,11 @@
 *** Persistence
 
 *** Services
+
+** Components
+
+*** Composition
+    Composition - Composite layout component, mix of Apache tiles and Magento layout.
+    Based on Symfony components. 
+
+    

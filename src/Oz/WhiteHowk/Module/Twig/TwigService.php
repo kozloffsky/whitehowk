@@ -20,5 +20,7 @@ class TwigService {
 
     public function onPostDispatch(KernelEvent $event){
         $event->getResponse()->setContent($event->getResponse()->getContent().'');
+
     }
-} 
+
+}
