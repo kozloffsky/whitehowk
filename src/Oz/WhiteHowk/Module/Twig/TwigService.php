@@ -46,7 +46,9 @@ class TwigService {
             }
         }, $this->_moduleResolver->getModulesPathArray());
 
-        $event->getResponse()->setContent($event->getResponse()->getContent().'.!!11');
+        $engine = new \Twig_Environment($loader);
+
+        $event->getResponse()->setContent($engine->render($request->attributes->get('view').'.twig'));
     }
 
 }

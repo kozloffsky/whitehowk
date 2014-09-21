@@ -27,9 +27,17 @@
             <argument type="service" id="persistence.configuration" />
         </service>
 
+        <service id="task.copy_module_schemas" class="Oz\WhiteHowk\Module\Core\Task\CopyModuleSchemas">
+            <argument type="service" id="kernel.module_resolver" />
+            <argument type="service" id="task.copy_files" />
+        </service>
+
+        <service id="task.copy_files" class="Oz\WhiteHowk\Module\Core\Task\CopyFilesTask" />
+
         <!-- commands -->
         <service id="command.sql_build_command" class="Oz\WhiteHowk\Module\Core\Console\Command\SqlBuildCommand">
             <argument type="service" id="task.generate_sql_for_schemas" />
+            <argument type="service" id="task.copy_module_schemas" />
             <tag name="cli.command" />
         </service>
 
@@ -39,3 +47,4 @@
         </service>
     </services>
 </container>
+

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3887a7b0e6d89deaad221388f23a7549",
+    "hash": "c3414c637eb5ba2939a2906846cc4b83",
     "packages": [
         {
             "name": "ocramius/proxy-manager",
@@ -76,7 +76,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel2",
-                "reference": "62fe9ab71095de418d265207359bef8b7d619a0f"
+                "reference": "2eb0c57e12d2d38cb92346135cc7a20c37e19585"
             },
             "require": {
                 "php": ">=5.4",
@@ -126,7 +126,7 @@
                 "ORM",
                 "persistence"
             ],
-            "time": "2014-09-18 22:59:36"
+            "time": "2014-09-21 13:46:17"
         },
         {
             "name": "psr/log",

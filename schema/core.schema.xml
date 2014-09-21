@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database name="dev" defaultIdMethod="native" namespace="Oz\WhiteHowk\Domain"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd">
-
-    <table name="modules" phpName="ModuleEntity">
-        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-        <column name="name" type="varchar" size="255" required="true" />
-        <column name="description" type="LONGVARCHAR" required="true" />
-        <column name="version" type="varchar" required="true"/>
-        <column name="enabled" type="boolean" required="true" />
-        <unique>
-            <unique-column name="name" />
-        </unique>
-    </table>
-</database>
-
+/cygdrive/e/work/whitehowk_cmf/src/Oz/WhiteHowk/Module/Core/schema/core.schema.xml

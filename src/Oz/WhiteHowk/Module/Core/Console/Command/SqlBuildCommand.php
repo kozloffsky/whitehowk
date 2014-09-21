@@ -9,6 +9,7 @@
 namespace Oz\WhiteHowk\Module\Core\Console\Command;
 
 
+use Oz\WhiteHowk\Module\Core\Task\CopyModuleSchemas;
 use Oz\WhiteHowk\Module\Core\Task\GenerateSqlFromSchemas;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,10 +17,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class SqlBuildCommand extends Command {
     private $generateSqlTask;
+    private $copySchemasTask;
 
-    public function __construct(GenerateSqlFromSchemas $task){
+    public function __construct(GenerateSqlFromSchemas $task, CopyModuleSchemas $copyTask){
         parent::__construct();
         $this->generateSqlTask = $task;
+        $this->copySchemasTask = $copyTask;
     }
 
     protected function configure(){
@@ -31,6 +34,7 @@ class SqlBuildCommand extends Command {
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->copySchemasTask->run();
         $this->generateSqlTask->run();
     }
 
