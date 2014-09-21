@@ -5,7 +5,7 @@
  * Date: 17.09.14
  * Time: 23:05
  */
-namespace Oz\WhiteHowk\Task;
+namespace Oz\WhiteHowk\Module\Core\Task;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;

@@ -19,21 +19,21 @@
         </service>
 
         <!-- tasks -->
-        <service id="task.generate_sql_for_schemas" class="Oz\WhiteHowk\Task\GenerateSqlFromSchemas">
+        <service id="task.generate_sql_for_schemas" class="Oz\WhiteHowk\Module\Core\Task\GenerateSqlFromSchemas">
             <argument type="service" id="persistence.configuration" />
         </service>
 
-        <service id="task.insert_sql" class="Oz\WhiteHowk\Task\InsertSql">
+        <service id="task.insert_sql" class="Oz\WhiteHowk\Module\Core\Task\InsertSql">
             <argument type="service" id="persistence.configuration" />
         </service>
 
         <!-- commands -->
-        <service id="command.sql_build_command" class="Oz\WhiteHowk\Console\Command\SqlBuildCommand">
+        <service id="command.sql_build_command" class="Oz\WhiteHowk\Module\Core\Console\Command\SqlBuildCommand">
             <argument type="service" id="task.generate_sql_for_schemas" />
             <tag name="cli.command" />
         </service>
 
-        <service id="command.sql_build_command" class="Oz\WhiteHowk\Console\Command\SqlInsertCommand">
+        <service id="command.sql_insert_command" class="Oz\WhiteHowk\Module\Core\Console\Command\SqlInsertCommand">
             <argument type="service" id="task.insert_sql" />
             <tag name="cli.command" />
         </service>

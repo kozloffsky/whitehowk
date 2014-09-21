@@ -38,16 +38,19 @@ class AppKernel {
     public function __construct($rootPath){
         $this->_containerProvider = new ContainerProvider();
         $this->_containerProvider->provide()->setParameter('root', $rootPath);
+        $this->_containerProvider->addContext($rootPath.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'applicationContext.xml');
 
         $this->_moduleResolver = new ModuleResolver($this->_containerProvider);
-        $this->_moduleResolver->setNamespaces(include $rootPath.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'modules.php');
+        $this->_moduleResolver->setNamespaces($this->_containerProvider->provide()->getParameter('modules'));
         $this->_containerProvider->provide()->set('kernel.module_resolver', $this->_moduleResolver);
 
         $this->_router = new Router();
         $this->_router->setContainer($this->_containerProvider->provide());
+        $this->_containerProvider->provide()->set('kernel.router', $this->_router);
 
         $this->_controllerDispatcher = new ControllerDispatcher();
         $this->_controllerDispatcher->setContainer($this->_containerProvider->provide());
+        $this->_containerProvider->provide()->set('kernel.controller_dispatcher', $this->_controllerDispatcher);
     }
 
     public function setModuleResolver(ModuleResolver $moduleResolver){
@@ -64,6 +67,10 @@ class AppKernel {
 
     public function setRouter(Router $router){
         $this->_router = $router;
+    }
+
+    public function getContainerProvider(){
+        return $this->_containerProvider;
     }
 
     /**

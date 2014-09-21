@@ -6,10 +6,10 @@
  * Time: 23:13
  */
 
-namespace Oz\WhiteHowk\Console\Command;
+namespace Oz\WhiteHowk\Module\Core\Console\Command;
 
 
-use Oz\WhiteHowk\Task\GenerateSqlFromSchemas;
+use Oz\WhiteHowk\Module\Core\Task\GenerateSqlFromSchemas;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

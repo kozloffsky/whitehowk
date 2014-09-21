@@ -6,9 +6,10 @@
     <parameters>
         <parameter key="test.service.class">\Oz\WhiteHowk\Kernel\ContainerProviderTestService</parameter>
         <parameter key="kernel.app_kernel.class">\Oz\WhiteHowk\Kernel\AppKernel</parameter>
+        <parameter key="modules" type="collection">
+            <parameter>\Oz\WhiteHowk\Module\Core</parameter>
+            <parameter>\Oz\WhiteHowk\Module\Page</parameter>
+            <parameter>\Oz\WhiteHowk\Module\Twig</parameter>
+        </parameter>
     </parameters>
-    <services>
-
-
-    </services>
 </container>

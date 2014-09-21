@@ -6,7 +6,7 @@
  * Time: 1:10
  */
 
-namespace Oz\WhiteHowk\Task;
+namespace Oz\WhiteHowk\Module\Core\Task;
 use Oz\WhiteHowk\Kernel\ModuleResolver;
 
 

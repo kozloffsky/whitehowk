@@ -9,6 +9,7 @@
 namespace Oz\WhiteHowk\Console;
 
 
+use Oz\WhiteHowk\Kernel\AppKernel;
 use Oz\WhiteHowk\Kernel\ContainerProvider;
 
 class Application extends \Symfony\Component\Console\Application{
@@ -16,9 +17,13 @@ class Application extends \Symfony\Component\Console\Application{
     public function __construct(){
         parent::__construct();
 
-        $container = new ContainerProvider();
-        $container->addContext(getcwd().DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'applicationContext.xml');
+        $kernel = new AppKernel(getcwd());
+
+        $container = $kernel->getContainerProvider();
         $context = $container->provide();
+
+        $kernel->getModuleResolver()->resolve();
+        $container->compile();
 
         $commands = $context->findTaggedServiceIds('cli.command');
 

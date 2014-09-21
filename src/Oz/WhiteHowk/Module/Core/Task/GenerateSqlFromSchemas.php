@@ -6,7 +6,9 @@
  * Time: 21:23
  */
 
-namespace Oz\WhiteHowk\Task;
+namespace Oz\WhiteHowk\Module\Core\Task;
+
+use Oz\WhiteHowk\Task\TaskInterface;
 use Propel\Generator\Config\GeneratorConfigInterface;
 use Propel\Generator\Manager\SqlManager;
 
