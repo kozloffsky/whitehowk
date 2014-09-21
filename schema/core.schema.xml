@@ -8,6 +8,7 @@
         <column name="name" type="varchar" size="255" required="true" />
         <column name="description" type="LONGVARCHAR" required="true" />
         <column name="version" type="varchar" required="true"/>
+        <column name="enabled" type="boolean" required="true" />
         <unique>
             <unique-column name="name" />
         </unique>

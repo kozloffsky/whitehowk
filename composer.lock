@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e884625feca2aa984bde169286acca3f",
+    "hash": "3887a7b0e6d89deaad221388f23a7549",
     "packages": [
         {
             "name": "ocramius/proxy-manager",
@@ -76,7 +76,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel2",
-                "reference": "7aaf3605fd8ee8e1e0c331ca806e04e1100a8f76"
+                "reference": "62fe9ab71095de418d265207359bef8b7d619a0f"
             },
             "require": {
                 "php": ">=5.4",
@@ -126,7 +126,7 @@
                 "ORM",
                 "persistence"
             ],
-            "time": "2014-09-16 19:15:17"
+            "time": "2014-09-18 22:59:36"
         },
         {
             "name": "psr/log",
@@ -1045,6 +1045,61 @@
             "homepage": "https://github.com/zendframework/zf2",
             "keywords": [
                 "code",
+                "zf2"
+            ],
+            "time": "2014-09-16 22:58:11"
+        },
+        {
+            "name": "zendframework/zend-config",
+            "version": "2.3.3",
+            "target-dir": "Zend/Config",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendConfig.git",
+                "reference": "a9ad512e1482461a5b500ee3fcf2d06ec9c7c7e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendConfig/zipball/a9ad512e1482461a5b500ee3fcf2d06ec9c7c7e8",
+                "reference": "a9ad512e1482461a5b500ee3fcf2d06ec9c7c7e8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.23",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-filter": "self.version",
+                "zendframework/zend-i18n": "self.version",
+                "zendframework/zend-json": "self.version",
+                "zendframework/zend-servicemanager": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-filter": "Zend\\Filter component",
+                "zendframework/zend-i18n": "Zend\\I18n component",
+                "zendframework/zend-json": "Zend\\Json to use the Json reader or writer classes",
+                "zendframework/zend-servicemanager": "Zend\\ServiceManager for use with the Config Factory to retrieve reader and writer instances"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev",
+                    "dev-develop": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Config\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a nested object property based user interface for accessing this configuration data within application code",
+            "homepage": "https://github.com/zendframework/zf2",
+            "keywords": [
+                "config",
                 "zf2"
             ],
             "time": "2014-09-16 22:58:11"

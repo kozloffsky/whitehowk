@@ -6,85 +6,9 @@
     <parameters>
         <parameter key="test.service.class">\Oz\WhiteHowk\Kernel\ContainerProviderTestService</parameter>
         <parameter key="kernel.app_kernel.class">\Oz\WhiteHowk\Kernel\AppKernel</parameter>
-        <!--
-        Here place for modules registration
-        Add modules namespaces
-        -->
-        <parameter key="app.modules" type="collection">
-            <parameter>\Oz\WhiteHowk\Module\Page</parameter>
-            <parameter>\Oz\WhiteHowk\Module\Twig</parameter>
-        </parameter>
     </parameters>
     <services>
 
-        <service id="test.event_listener" class="\Oz\WhiteHowk\Kernel\TestEventListener">
-            <tag name="kernel.event_listener" event="kernel.test" method="onTestEvent"/>
-        </service>
 
-        <service id="kernel.app_kernel" class="%kernel.app_kernel.class%">
-            <call method="setModuleResolver">
-                <argument type="service" id="kernel.module_resolver" />
-            </call>
-            <call method="setRouter">
-                <argument type="service" id="kernel.router" />
-            </call>
-            <call method="setEventDispatcher">
-                <argument type="service" id="event_dispatcher" />
-            </call>
-            <call method="setControllerDispatcher">
-                <argument type="service" id="kernel.controller_dispatcher" />
-            </call>
-        </service>
-
-        <service id="kernel.module_resolver" class="\Oz\WhiteHowk\Kernel\ModuleResolver">
-            <argument>%app.modules%</argument>
-            <call method="setNamespaces">
-                <argument>%app.modules%</argument>
-            </call>
-            <call method="setContainerProvider">
-                <argument type="service" id="container_provider" />
-            </call>
-        </service>
-
-        <service id="kernel.controller_dispatcher" class="\Oz\WhiteHowk\Kernel\ControllerDispatcher">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-
-        <service id="persistence.provider" class="\Oz\WhiteHowk\Persistence\PersistenceProvider">
-            <tag name="service.eager" />
-            <argument type="service" id="persistence.configuration"/>
-        </service>
-
-        <service id="persistence.configuration" class="\Propel\Generator\Config\GeneratorConfig">
-            <argument type="string">persistence.xml</argument>
-        </service>
-
-        <service id="kernel.router" class="\Oz\WhiteHowk\Kernel\Router">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-
-        <!-- tasks -->
-        <service id="task.generate_sql_for_schemas" class="Oz\WhiteHowk\Task\GenerateSqlFromSchemas">
-            <argument type="service" id="persistence.configuration" />
-        </service>
-
-        <service id="task.insert_sql" class="Oz\WhiteHowk\Task\InsertSql">
-            <argument type="service" id="persistence.configuration" />
-        </service>
-
-        <!-- commands -->
-        <service id="command.sql_build_command" class="Oz\WhiteHowk\Console\Command\SqlBuildCommand">
-            <argument type="service" id="task.generate_sql_for_schemas" />
-            <tag name="cli.command" />
-        </service>
-
-        <service id="command.sql_build_command" class="Oz\WhiteHowk\Console\Command\SqlInsertCommand">
-            <argument type="service" id="task.insert_sql" />
-            <tag name="cli.command" />
-        </service>
     </services>
 </container>

@@ -6,7 +6,7 @@
  * Time: 14:25
  */
 
-namespace Oz\WhiteHowk\Persistence;
+namespace Oz\WhiteHowk\Module\Core\Persistence;
 
 use Propel\Common\Config\ConfigurationManager;
 use Propel\Generator\Config\GeneratorConfig;

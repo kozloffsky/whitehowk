@@ -26,7 +26,7 @@ class ControllerDispatcher {
      */
     public function dispatch(Request $request){
         $controllerName = $request->attributes->get('_controller');
-        $methodName = $request->attributes->get('_method');
+        $methodName = $request->attributes->get('method');
         $controller = $this->_container->get($controllerName);
 
         $response = call_user_func_array(array($controller, $methodName), array());

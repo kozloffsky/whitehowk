@@ -10,6 +10,9 @@
     <services>
         <service id="oz.twig.twig_service" class="\Oz\WhiteHowk\Module\Twig\TwigService">
             <tag name="kernel.event_listener" event="kernel.post_dispatch" method="onPostDispatch"/>
+            <call method="setModuleResolver">
+                <argument type="service" id="kernel.module_resolver" />
+            </call>
         </service>
     </services>
 </container>

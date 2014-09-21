@@ -27,7 +27,10 @@ class Router {
         //TODO: Add full support for routes
         foreach($controllers as $id=>$routes){
             foreach($routes as $route){
-                $routeCollection->add($id.$route['method'], new Route( $route['path'], array('_controller' => $id,'_method'=>$route['method'])));
+                $attribbutes = array();
+                $attribbutes['_controller'] = $id;
+                $attribbutes = array_merge($attribbutes, $route);
+                $routeCollection->add($id.$route['method'], new Route( $route['path'], $attribbutes));
             }
         }
 
@@ -38,7 +41,6 @@ class Router {
         //Add controller and parameters attributes to request
         //TODO: add exception handler and forward to 404 or error controller
         $request->attributes->add($matcher->matchRequest($request));
-        var_dump($request->attributes);
 
         return $request;
     }

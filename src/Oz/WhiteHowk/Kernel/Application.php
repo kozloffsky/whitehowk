@@ -7,6 +7,8 @@
  */
 
 namespace Oz\WhiteHowk\Kernel;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * Class Application
@@ -18,6 +20,7 @@ namespace Oz\WhiteHowk\Kernel;
  * 4. Generate response
  *
  * TODO: Should application provide public API?
+ * TODO: Move AppKernel and ModuleResolver out from context
  * @package Oz\WhiteHowk\Kernel
  */
 class Application {
@@ -27,6 +30,7 @@ class Application {
     private $_rootDir;
     private $_env;
     private $_autoloader;
+    private $_containerProvider;
 
     /**
      * Constructor
@@ -41,7 +45,8 @@ class Application {
 
     private function init(){
         $this->initializeAutoloader();
-        $this->initializeDI();
+        $kernel = $this->initializeKernel();
+        $kernel->boot();
     }
 
     private function initializeAutoloader(){
@@ -49,13 +54,10 @@ class Application {
             .'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
     }
 
-    private function initializeDI(){
-        $containerProvider = new ContainerProvider();
-        $containerProvider->addContext($this->_rootDir.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'applicationContext.xml');
-
-        $container = $containerProvider->provide();
-        $kernel = $container->get('kernel.app_kernel');
-        $kernel->boot();
+    private function initializeKernel(){
+        //Move to compiler passes
+        $kernel = new AppKernel($this->_rootDir);
+        return $kernel;
     }
 
     public static function run($root, $env = "prod"){

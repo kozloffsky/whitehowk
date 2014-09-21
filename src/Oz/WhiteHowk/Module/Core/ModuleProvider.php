@@ -2,12 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: miho
- * Date: 16.09.14
- * Time: 1:22
+ * Date: 21.09.14
+ * Time: 17:09
  */
 
-namespace Oz\WhiteHowk\Module\Twig;
-
+namespace Oz\WhiteHowk\Module\Core;
 
 use Oz\WhiteHowk\Kernel\ModuleProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -19,7 +18,7 @@ class ModuleProvider implements ModuleProviderInterface{
      */
     public function getName()
     {
-        return 'oz/twig';
+        return 'oz/core';
     }
 
     /**
@@ -28,9 +27,7 @@ class ModuleProvider implements ModuleProviderInterface{
      */
     public function getDependency()
     {
-        return array(
-            'oz/core'
-        );
+        return array();
     }
 
     /**
@@ -43,6 +40,5 @@ class ModuleProvider implements ModuleProviderInterface{
     {
         // TODO: Implement boot() method.
     }
-
 
 } 

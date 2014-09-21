@@ -27,6 +27,7 @@ class EagerServicePass implements CompilerPassInterface {
     public function process(ContainerBuilder $container)
     {
         $defs = $container->findTaggedServiceIds('service.eager');
+
         foreach($defs as $id=>$props){
             //Simply call get to instantiate service
             $container->get($id);

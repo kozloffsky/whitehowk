@@ -29,6 +29,7 @@ class ModuleProvider implements ModuleProviderInterface{
     public function getDependency()
     {
         return array(
+            'oz/core',
             'oz/twig'
         );
     }

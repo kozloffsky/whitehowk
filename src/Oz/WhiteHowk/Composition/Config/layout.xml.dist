@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<layout>
-    <definition name="base.layout" template="layout/base" class="">
-    </definition>
-
-    <definition name="mobile.layout" extends="base.layout">
-
-    </definition>
-</layout>

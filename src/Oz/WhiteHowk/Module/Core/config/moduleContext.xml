@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="oz.core.version">0.0.1</parameter>
+        <parameter key="oz.core.stability">draft</parameter>
+        <parameter key="oz.core.description">Here should be module description</parameter>
+    </parameters>
+    <services>
+        <service id="persistence.provider" class="\Oz\WhiteHowk\Module\Core\Persistence\PersistenceProvider">
+            <argument type="service" id="persistence.configuration"/>
+            <tag name="service.eager" />
+        </service>
+
+        <service id="persistence.configuration" class="\Propel\Generator\Config\GeneratorConfig">
+            <argument type="string">%root%/config/persistence.xml</argument>
+        </service>
+
+        <!-- tasks -->
+        <service id="task.generate_sql_for_schemas" class="Oz\WhiteHowk\Task\GenerateSqlFromSchemas">
+            <argument type="service" id="persistence.configuration" />
+        </service>
+
+        <service id="task.insert_sql" class="Oz\WhiteHowk\Task\InsertSql">
+            <argument type="service" id="persistence.configuration" />
+        </service>
+
+        <!-- commands -->
+        <service id="command.sql_build_command" class="Oz\WhiteHowk\Console\Command\SqlBuildCommand">
+            <argument type="service" id="task.generate_sql_for_schemas" />
+            <tag name="cli.command" />
+        </service>
+
+        <service id="command.sql_build_command" class="Oz\WhiteHowk\Console\Command\SqlInsertCommand">
+            <argument type="service" id="task.insert_sql" />
+            <tag name="cli.command" />
+        </service>
+    </services>
+</container>

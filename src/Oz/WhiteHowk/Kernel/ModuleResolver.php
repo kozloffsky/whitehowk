@@ -33,8 +33,13 @@ class ModuleResolver {
      */
     private $_containerProvider;
 
-    public function __construct(){
+
+    private $_modulesPaths;
+
+    public function __construct(ContainerProvider $containerProvider){
         $this->_providers = array();
+        $this->_modulesPaths = array();
+        $this->_containerProvider = $containerProvider;
     }
 
     /**
@@ -58,6 +63,7 @@ class ModuleResolver {
     }
 
     public function setNamespaces($namespaces){
+        var_dump($namespaces);
         foreach($namespaces as $ns){
             $this->registerModule($ns);
         }
@@ -67,7 +73,6 @@ class ModuleResolver {
         foreach($this->_providers as $name=>$provider){
             $this->bootModule($name);
         }
-        $this->_containerProvider->process();
     }
 
     public function bootModule($name){
@@ -92,7 +97,7 @@ class ModuleResolver {
 
             //Is dependency registered. if not - throw exception
             if(!isset($this->_providers[$dependency])){
-                throw new \Exception('Dependency does not found');
+                throw new \Exception('Dependency does not found '.$dependency);
             }
 
             //Boot dependency
@@ -101,10 +106,12 @@ class ModuleResolver {
 
         $moduleDir = $this->getModuleDirectory($provider);
 
+        $this->_modulesPaths[] = $moduleDir;
+
         $this->_containerProvider->addContext($moduleDir.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'moduleContext.xml');
 
         $this->_modules[$name] = $provider;
-        var_dump($name);
+
     }
 
     public function setContainerProvider(ContainerProvider $provider){
@@ -114,6 +121,10 @@ class ModuleResolver {
     public function getModuleDirectory($moduleProviderClass){
         $r = new \ReflectionClass($moduleProviderClass);
         return dirname($r->getFileName());
+    }
+
+    public function getModulesPathArray() {
+        return $this->_modulesPaths;
     }
 
 } 
