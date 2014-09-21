@@ -62,8 +62,7 @@ class ModuleResolver {
         $this->_providers[$provider->getName()] = $provider;
     }
 
-    public function setNamespaces($namespaces){
-        var_dump($namespaces);
+    public function setNamespaces(array $namespaces){
         foreach($namespaces as $ns){
             $this->registerModule($ns);
         }
@@ -111,6 +110,8 @@ class ModuleResolver {
         $this->_containerProvider->addContext($moduleDir.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'moduleContext.xml');
 
         $this->_modules[$name] = $provider;
+
+        $provider->boot($this->_containerProvider->provide());
 
     }
 
