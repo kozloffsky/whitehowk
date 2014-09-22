@@ -31,7 +31,7 @@ class ModuleProvider implements ModuleProviderInterface{
     }
 
     /**
-     * Configure module services and provide shared
+     * Configure module services and provide shared, register compiler passes.
      *
      * @param ContainerBuilder $container
      * @return void
