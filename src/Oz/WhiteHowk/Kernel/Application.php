@@ -21,6 +21,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
  *
  * TODO: Should application provide public API?
  * TODO: Move AppKernel and ModuleResolver out from context
+ * TODO: Seems that AppKernel and Application can be merged into one class AppKernel
  * @package Oz\WhiteHowk\Kernel
  */
 class Application {
@@ -30,7 +31,6 @@ class Application {
     private $_rootDir;
     private $_env;
     private $_autoloader;
-    private $_containerProvider;
 
     /**
      * Constructor
@@ -43,19 +43,24 @@ class Application {
         $this->init();
     }
 
+    /**
+     *
+     */
     private function init(){
         $this->initializeAutoloader();
         $kernel = $this->initializeKernel();
         $kernel->boot();
     }
 
+    /**
+     *
+     */
     private function initializeAutoloader(){
         $this->_autoloader = require $this->_rootDir.DIRECTORY_SEPARATOR
             .'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
     }
 
     private function initializeKernel(){
-        //Move to compiler passes
         $kernel = new AppKernel($this->_rootDir);
         return $kernel;
     }

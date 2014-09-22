@@ -8,8 +8,6 @@
 
 namespace Oz\WhiteHowk\Module\Core\Console\Command;
 
-
-use Oz\WhiteHowk\Kernel\ModuleResolver;
 use Oz\WhiteHowk\Module\Core\Task\BuildModelTask;
 use Oz\WhiteHowk\Module\Core\Task\CopyModuleSchemas;
 use Symfony\Component\Console\Command\Command;
@@ -20,10 +18,6 @@ class ModelBuildCommand extends Command {
 
     private $task;
     private $copySchemasTask;
-    /**
-     * @var ModuleResolver
-     */
-    private $_moduleResolver;
 
     public function __construct(BuildModelTask $task, CopyModuleSchemas $copyModuleSchemas){
         parent::__construct();

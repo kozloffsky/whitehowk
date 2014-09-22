@@ -28,6 +28,10 @@ class ContainerProvider {
      */
     private $_builder;
 
+    /**
+     * Constructor
+     * Here instance creates context and register itself as 'container_provider'. Also register core services
+     */
     public function __construct(){
         $this->_builder = new ContainerBuilder();
         $this->_builder->set('container_provider',$this);
@@ -50,10 +54,18 @@ class ContainerProvider {
         return $this->_builder;
     }
 
+    /**
+     * Compile and freeze context.
+     */
     public function compile(){
         $this->_builder->compile();
     }
 
+    /**
+     * Add context configuration for context
+     * @param $path
+     * @throws ConfigurationException
+     */
     public function addContext($path){
         $dir= dirname($path);
         $fileName = basename($path);
