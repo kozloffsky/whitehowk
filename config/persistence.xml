@@ -33,12 +33,13 @@
         <generator>
             <defaultConnection>dev</defaultConnection>
             <connection>dev</connection>
-            <namespaceAutoPackage>false</namespaceAutoPackage>
+            <targetPackage>domain</targetPackage>
+            <packageObjectModel>true</packageObjectModel>
         </generator>
         <paths>
             <sqlDir>sql</sqlDir>
             <schemaDir>schema</schemaDir>
-            <outputDir>Domain</outputDir>
+            <phpDir>src</phpDir>
         </paths>
     </propel>
 </config>

@@ -51,7 +51,7 @@
 
         <service id="command.model_build_command" class="Oz\WhiteHowk\Module\Core\Console\Command\ModelBuildCommand">
             <argument type="service" id="task.build_model_task" />
-            <argument type="service" id="kernel.module_resolver" />
+            <argument type="service" id="task.copy_module_schemas" />
             <tag name="cli.command" />
         </service>
     </services>

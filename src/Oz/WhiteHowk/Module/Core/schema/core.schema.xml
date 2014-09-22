@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
-<database name="dev" defaultMethod="native" namespace="Oz\WhiteHowk\Module\Core\Domain">
-    <table name="testTable">
-        <column name="id" autoIncrement="true" />
+<database name="dev" defaultMethod="native" namespace="Oz\WhiteHowk\Module\Core\Domain" >
+    <!-- Table for storing config values -->
+    <table name="config" phpName="ConfigEntity">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="path" type="varchar" required="true" />
+        <column name="value" type="varchar" required="true" />
     </table>
 </database>

@@ -28,26 +28,18 @@ class BuildModelTask implements TaskInterface{
      */
     public function run($args = array())
     {
-        $workingDirectory = $args['workingDir'];
-        $phpDir = $workingDirectory.DIRECTORY_SEPARATOR.'Domain';
-        $schemaDir = $workingDirectory.DIRECTORY_SEPARATOR.'schema';
-        if(!is_dir($schemaDir)){
-            return;
-        }
-
         $generatorConfig = $this->_config;
 
-        $this->createDirectory($workingDirectory);
+        $this->createDirectory($generatorConfig->getSection('paths')['phpDir']);
 
         $manager = new ModelManager();
         $manager->setFilesystem($this->getFilesystem());
         $manager->setGeneratorConfig($generatorConfig);
-        $manager->setSchemas($this->getSchemas($schemaDir, true));
+        $manager->setSchemas($this->getSchemas($generatorConfig->getSection('paths')['schemaDir'], true));
         $manager->setLoggerClosure(function ($message) {
             echo $message."\n";
         });
-
-        $manager->setWorkingDirectory($phpDir);
+        $manager->setWorkingDirectory($generatorConfig->getSection('paths')['phpDir']);
 
         $manager->build();
     }

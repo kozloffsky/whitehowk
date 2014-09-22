@@ -11,6 +11,7 @@ namespace Oz\WhiteHowk\Module\Core\Console\Command;
 
 use Oz\WhiteHowk\Kernel\ModuleResolver;
 use Oz\WhiteHowk\Module\Core\Task\BuildModelTask;
+use Oz\WhiteHowk\Module\Core\Task\CopyModuleSchemas;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,15 +19,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ModelBuildCommand extends Command {
 
     private $task;
+    private $copySchemasTask;
     /**
      * @var ModuleResolver
      */
     private $_moduleResolver;
 
-    public function __construct(BuildModelTask $task, ModuleResolver $moduleResolver){
+    public function __construct(BuildModelTask $task, CopyModuleSchemas $copyModuleSchemas){
         parent::__construct();
         $this->task = $task;
-        $this->_moduleResolver = $moduleResolver;
+        $this->copySchemasTask = $copyModuleSchemas;
+
     }
 
     protected function configure()
@@ -38,8 +41,7 @@ class ModelBuildCommand extends Command {
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        foreach($this->_moduleResolver->getModulesPathArray() as $path){
-            $this->task->run(array('workingDir'=>$path));
-        }
+        $this->copySchemasTask->run();
+        $this->task->run();
     }
 } 
