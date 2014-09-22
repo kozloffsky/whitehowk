@@ -33,6 +33,9 @@
         </service>
 
         <service id="task.copy_files" class="Oz\WhiteHowk\Module\Core\Task\CopyFilesTask" />
+        <service id="task.build_model_task" class="Oz\WhiteHowk\Module\Core\Task\BuildModelTask">
+            <argument type="service" id="persistence.configuration" />
+        </service>
 
         <!-- commands -->
         <service id="command.sql_build_command" class="Oz\WhiteHowk\Module\Core\Console\Command\SqlBuildCommand">
@@ -43,6 +46,12 @@
 
         <service id="command.sql_insert_command" class="Oz\WhiteHowk\Module\Core\Console\Command\SqlInsertCommand">
             <argument type="service" id="task.insert_sql" />
+            <tag name="cli.command" />
+        </service>
+
+        <service id="command.model_build_command" class="Oz\WhiteHowk\Module\Core\Console\Command\ModelBuildCommand">
+            <argument type="service" id="task.build_model_task" />
+            <argument type="service" id="kernel.module_resolver" />
             <tag name="cli.command" />
         </service>
     </services>

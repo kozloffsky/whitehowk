@@ -33,10 +33,12 @@
         <generator>
             <defaultConnection>dev</defaultConnection>
             <connection>dev</connection>
+            <namespaceAutoPackage>false</namespaceAutoPackage>
         </generator>
         <paths>
             <sqlDir>sql</sqlDir>
             <schemaDir>schema</schemaDir>
+            <outputDir>Domain</outputDir>
         </paths>
     </propel>
 </config>

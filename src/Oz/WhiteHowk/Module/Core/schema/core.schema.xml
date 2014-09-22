@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
-<database name="dev" defaultMethod="native">
-
+<database name="dev" defaultMethod="native" namespace="Oz\WhiteHowk\Module\Core\Domain">
+    <table name="testTable">
+        <column name="id" autoIncrement="true" />
+    </table>
 </database>
