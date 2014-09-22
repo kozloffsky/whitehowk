@@ -9,7 +9,9 @@
 namespace Oz\WhiteHowk\Module\Core;
 
 use Oz\WhiteHowk\Kernel\ModuleProviderInterface;
+use Oz\WhiteHowk\Module\Core\DependencyInjection\RegisterDocumentFieldTypeResolverPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 
 class ModuleProvider implements ModuleProviderInterface{
     /**
@@ -38,7 +40,8 @@ class ModuleProvider implements ModuleProviderInterface{
      */
     public function boot(ContainerBuilder $container)
     {
-        // TODO: Implement boot() method.
+        $container->setDefinition('core.document_field_type_resolver', new Definition('Oz\WhiteHowk\Module\Core\Service\DocumentFieldTypeResolver'));
+        $container->addCompilerPass(new RegisterDocumentFieldTypeResolverPass());
     }
 
 } 

@@ -8,9 +8,15 @@
 
 namespace Oz\WhiteHowk\Module\Page\Controller;
 
+use Oz\WhiteHowk\Module\Core\Service\DocumentFieldTypeResolver;
+
 class IndexController {
 
-    public function indexAction(){
+    public function __construct(DocumentFieldTypeResolver $resolver){
+        var_dump($resolver);
+    }
 
+    public function indexAction(){
+        return "";
     }
 }

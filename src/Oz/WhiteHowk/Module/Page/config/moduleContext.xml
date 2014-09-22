@@ -10,6 +10,7 @@
     </parameters>
     <services>
         <service id="oz.page.controller.index" class="\Oz\WhiteHowk\Module\Page\Controller\IndexController">
+            <argument type="service" id="core.document_field_type_resolver" />
             <tag name="router.route" path="/" method="indexAction" view="index" />
         </service>
     </services>
