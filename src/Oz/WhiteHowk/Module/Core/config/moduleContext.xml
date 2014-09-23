@@ -32,6 +32,11 @@
             <argument type="service" id="task.copy_files" />
         </service>
 
+        <service id="task.copy_resources" class="Oz\WhiteHowk\Module\Core\Task\CopyResources">
+            <argument type="service" id="task.copy_files" />
+            <argument type="service" id="kernel.module_resolver" />
+        </service>
+
         <service id="task.copy_files" class="Oz\WhiteHowk\Module\Core\Task\CopyFilesTask" />
         <service id="task.build_model_task" class="Oz\WhiteHowk\Module\Core\Task\BuildModelTask">
             <argument type="service" id="persistence.configuration" />
@@ -52,6 +57,11 @@
         <service id="command.model_build_command" class="Oz\WhiteHowk\Module\Core\Console\Command\ModelBuildCommand">
             <argument type="service" id="task.build_model_task" />
             <argument type="service" id="task.copy_module_schemas" />
+            <tag name="cli.command" />
+        </service>
+
+        <service id="command.sql_insert_command" class="Oz\WhiteHowk\Module\Core\Console\Command\CopyResources">
+            <argument type="service" id="task.copy_resources" />
             <tag name="cli.command" />
         </service>
 
