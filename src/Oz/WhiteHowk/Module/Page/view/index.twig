@@ -1,5 +1,6 @@
 {% extends 'layout.twig' %}
 
 {% block page_content %}
-sdf sadf asvxcv asdf sadf asd
+    <nav-bar params="route: route"></nav-bar>
+    <div id="page" class="container" data-bind="component: { name: route().page, params: route }"></div>
 {% endblock %}

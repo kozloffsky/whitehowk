@@ -13,7 +13,7 @@ use Oz\WhiteHowk\Module\Core\Service\DocumentFieldTypeResolver;
 class IndexController {
 
     public function __construct(DocumentFieldTypeResolver $resolver){
-        var_dump($resolver);
+        //var_dump($resolver);
     }
 
     public function indexAction(){

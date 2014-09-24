@@ -1,2 +1,5 @@
 # Created by .gitignore support plugin (hsz.mobi)
 vendor
+
+node_modules/
+bower_modules/

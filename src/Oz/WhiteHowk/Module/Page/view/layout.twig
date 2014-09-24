@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="/bower_modules/components-bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
         <title>{% block page_title %}Test Title{% endblock %}</title>
     </head>
     <body>
@@ -9,5 +13,7 @@
         </header>
         <content>{% block page_content %}{% endblock %}</content>
         <footer></footer>
+        <script src="/app/require.config.js"></script>
+        <script data-main="app/startup" src="/bower_modules/requirejs/require.js"></script>
     </body>
 </html>
