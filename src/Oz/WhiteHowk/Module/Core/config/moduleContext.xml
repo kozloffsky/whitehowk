@@ -60,7 +60,7 @@
             <tag name="cli.command" />
         </service>
 
-        <service id="command.sql_insert_command" class="Oz\WhiteHowk\Module\Core\Console\Command\CopyResources">
+        <service id="command.copy_resources" class="Oz\WhiteHowk\Module\Core\Console\Command\CopyResources">
             <argument type="service" id="task.copy_resources" />
             <tag name="cli.command" />
         </service>

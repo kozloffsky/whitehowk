@@ -30,7 +30,7 @@ class PersistenceProvider {
      */
     public function __construct(GeneratorConfigInterface $config){
         $this->_configurationManager = $config;
-        //var_dump($this->_configurationManager->getConfigProperty('database.connections.prod'));
+        $this->initialize();
     }
 
     public function initialize(){

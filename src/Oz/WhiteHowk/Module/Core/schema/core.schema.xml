@@ -6,6 +6,9 @@
         <column name="value" type="varchar" required="true" />
         <behavior name="auto_add_pk" />
         <behavior name="timestampable" />
+        <behavior name="validate">
+            <parameter name="path_not_null" value="{column: path, validator: NotNull}" />
+        </behavior>
     </table>
 
     <!--

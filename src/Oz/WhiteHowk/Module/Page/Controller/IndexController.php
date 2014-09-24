@@ -8,6 +8,8 @@
 
 namespace Oz\WhiteHowk\Module\Page\Controller;
 
+use Oz\WhiteHowk\Module\Core\Domain\ConfigEntity;
+use Oz\WhiteHowk\Module\Core\Domain\Document;
 use Oz\WhiteHowk\Module\Core\Service\DocumentFieldTypeResolver;
 
 class IndexController {
@@ -17,6 +19,12 @@ class IndexController {
     }
 
     public function indexAction(){
+        $modelClass = new \ReflectionClass('Oz\WhiteHowk\Module\Core\Domain\ConfigEntity');
+        $model = $modelClass->newInstance();
+        echo $model->validate();
+        $model->save();
         return "";
     }
+
+
 }
