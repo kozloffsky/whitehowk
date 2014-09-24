@@ -18,7 +18,8 @@ use Symfony\Component\Finder\Finder;
  * Class CopyResources
  * @package Oz\WhiteHowk\Taks
  */
-class CopyResources implements TaskInterface{
+class CopyResources implements TaskInterface {
+    use FileSystemHelper;
     /**
      * @var ModuleResolver
      */
@@ -42,11 +43,24 @@ class CopyResources implements TaskInterface{
     {
         $targetDir = getcwd().DIRECTORY_SEPARATOR.'web';
 
-        foreach(Finder::create()
-                    ->path('resources')
-                    ->files()
-                    ->in($this->_moduleResolver->getModulesPathArray()) as $path){
-            echo $path->getRealPath()."\n";
+        foreach($this->_moduleResolver->getModulesPathArray() as $path){
+            $resPath = $path.DIRECTORY_SEPARATOR.'resources';
+            if(!is_dir($resPath)){
+                continue;
+            }
+
+            foreach(Finder::create()
+                ->files()
+                ->in($resPath) as $file) {
+                echo 'Copying '.$file->getRealPath()."\n\t -> ".$targetDir.str_replace($resPath,'',$file->getRealPath()) . "\n";
+                $this->getFilesystem()
+                    ->symlink(
+                        $file->getRealPath(),
+                        $targetDir.str_replace($resPath,'',$file->getRealPath()));
+
+            }
         }
+
+
     }
 } 
