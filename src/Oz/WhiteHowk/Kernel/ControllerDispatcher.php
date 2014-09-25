@@ -29,7 +29,7 @@ class ControllerDispatcher {
         $methodName = $request->attributes->get('method');
         $controller = $this->_container->get($controllerName);
 
-        $response = call_user_func_array(array($controller, $methodName), array());
+        $response = call_user_func_array(array($controller, $methodName), array($request));
 
         return $this->validateResponse($response);
     }

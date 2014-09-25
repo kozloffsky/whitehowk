@@ -9,9 +9,16 @@
         <parameter key="oz.page.description">Here should be module description</parameter>
     </parameters>
     <services>
+        <service id="oz.page.controller.service" class="\Oz\WhiteHowk\Module\Page\Controller\ServiceController">
+            <argument type="service" id="core.document_field_type_resolver" />
+            <tag name="router.route" path="/service" method="dispatch" />
+        </service>
+
         <service id="oz.page.controller.index" class="\Oz\WhiteHowk\Module\Page\Controller\IndexController">
             <argument type="service" id="core.document_field_type_resolver" />
             <tag name="router.route" path="/" method="indexAction" view="index" />
         </service>
+
+
     </services>
 </container>

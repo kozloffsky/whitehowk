@@ -36,6 +36,9 @@ class TwigService {
 
     public function onPostDispatch(KernelEvent $event) {
         $request = $event->getRequest();
+        if(!$request->attributes->has('view')){
+            return;
+        }
 
         $loader = new \Twig_Loader_Filesystem();
 

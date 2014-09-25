@@ -19,10 +19,6 @@ class IndexController {
     }
 
     public function indexAction(){
-        $modelClass = new \ReflectionClass('Oz\WhiteHowk\Module\Core\Domain\ConfigEntity');
-        $model = $modelClass->newInstance();
-        echo $model->validate();
-        $model->save();
         return "";
     }
 
