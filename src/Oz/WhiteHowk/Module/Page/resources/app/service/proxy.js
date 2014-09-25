@@ -14,8 +14,8 @@ define(['jquery','knockout'], function($, ko){
                     args: args
                 })
             ).done(function(data){
-                    console.log('OK! resounse is ', JSON.parse(data));
-                    d.resolve(JSON.parse(data));
+                    console.log('OK! resounse is ', data);
+                    d.resolve(data);
                 }
             ).fail(function(){
                     console.log('Fail load service call');
