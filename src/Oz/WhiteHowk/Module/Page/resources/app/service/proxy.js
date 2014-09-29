@@ -10,12 +10,13 @@ define(['jquery','knockout'], function($, ko){
             $.post(
                 "/service",
                 JSON.stringify({
-                    name: name,
+                    service: 'page.router_service',
+                    method: 'route',
                     args: args
                 })
             ).done(function(data){
                     console.log('OK! resounse is ', data);
-                    d.resolve(data);
+                    d.resolve(data.result);
                 }
             ).fail(function(){
                     console.log('Fail load service call');

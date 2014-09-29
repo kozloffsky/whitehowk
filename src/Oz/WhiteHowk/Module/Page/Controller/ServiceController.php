@@ -9,6 +9,7 @@
 namespace Oz\WhiteHowk\Module\Page\Controller;
 
 
+use Oz\WhiteHowk\Module\Page\Service\ServiceResolver;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -16,8 +17,20 @@ class ServiceController {
 
     protected $_modelClass;
 
-    public function dispatch(Request $request){
-        return new JsonResponse(array('status'=>'ok','component'=>'home','componentName'=>'home-page'));
+    protected $_serviceResolver;
+
+    public function __construct(ServiceResolver $serviceResolver){
+        $this->_serviceResolver = $serviceResolver;
     }
+
+    public function dispatch(Request $request){
+        $jsonRequest = json_decode($request->getContent(), true);
+
+        $result = $this->_serviceResolver->callServiceMethod($jsonRequest['service'], $jsonRequest['method'], $jsonRequest['args']);
+
+        return new JsonResponse(array('status'=>'ok', 'result'=>$result));
+    }
+
+
 
 } 

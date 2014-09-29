@@ -10,7 +10,7 @@
     </parameters>
     <services>
         <service id="oz.page.controller.service" class="\Oz\WhiteHowk\Module\Page\Controller\ServiceController">
-            <argument type="service" id="core.document_field_type_resolver" />
+            <argument type="service" id="page.service_resolver" />
             <tag name="router.route" path="/service" method="dispatch" />
         </service>
 
@@ -19,6 +19,11 @@
             <tag name="router.route" path="/" method="indexAction" view="index" />
         </service>
 
+
+        <!-- REMOTE SERVICES -->
+        <service id="page.router_service" class="\Oz\WhiteHowk\Module\Page\Service\HashRouterService">
+            <tag name="page.remote_service" methods="route"/>
+        </service>
 
     </services>
 </container>

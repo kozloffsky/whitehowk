@@ -10,9 +10,12 @@ namespace Oz\WhiteHowk\Module\Page;
 
 
 use Oz\WhiteHowk\Kernel\ModuleProviderInterface;
+use Oz\WhiteHowk\Module\Page\DependencyInjection\ServiceResolverCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 
-class ModuleProvider implements ModuleProviderInterface{
+class ModuleProvider implements ModuleProviderInterface
+{
     /**
      * Return module name in format {$vendor/$name}
      * @return string
@@ -42,7 +45,8 @@ class ModuleProvider implements ModuleProviderInterface{
      */
     public function boot(ContainerBuilder $container)
     {
-        // TODO: Implement boot() method.
+        $container->setDefinition('page.service_resolver', new Definition('Oz\WhiteHowk\Module\Page\Service\ServiceResolver'));
+        $container->addCompilerPass(new ServiceResolverCompilerPass());
     }
 
 }
