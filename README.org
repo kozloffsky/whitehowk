@@ -7,14 +7,61 @@
 ** Architecture
 
 *** Application
-
+    Start point of CMF and kernel initializer
 *** Kernel
+    Kernel is core of CMF. It's responcibilities are:
+    1. Initialize modules
+       Load modules information, resolve module dependencies and merge DI contexts.
+    2. Boot modules
+       Here modules are configurate DI container and other module related services.
+    3. Initialize DI container
+       Compile DI container.
+    4. Initialize Request
+    5. Handle requst
+    6. Send response to browser.
 
 *** Modules
-    Modules acts like plugins.
-#+BEGIN_SRC javascript
-  function(){}
-#+END_SRC
+    Modules acts like plugins. Each module should implement ModuleProvider interface,
+    and provide information about itself, required dependencies and configure 
+    if nesessery DI container, add compiller passes or register service definitions.
+    #+BEGIN_SRC php 
+      class ModuleProvider implements ModuleProviderInterface
+      {
+          /**
+           ,* Return module name in format {$vendor/$name}
+           ,* @return string
+           ,*/
+          public function getName()
+          {
+              return 'sample/acme';
+          }
+      
+          /**
+           ,* Return array of module names
+           ,* @return array
+           ,*/
+          public function getDependency()
+          {
+              return array(
+                  'oz/core',
+                  'oz/twig'
+              );
+          }
+      
+          /**
+           ,* Configure module services and provide shared
+           ,*
+           ,* @param ContainerBuilder $container
+           ,* @return void
+           ,*/
+          public function boot(ContainerBuilder $container)
+          {
+              $container->setDefinition('acme.some_service', new Definition('Acme\SomeService'));
+              $container->addCompilerPass(new AcmeServiceProvider());
+          }
+      
+      }
+    #+END_SRC
 
 *** DI
 

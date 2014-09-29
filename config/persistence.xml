@@ -11,10 +11,10 @@
                     <password>s3cr3t</password>
                 </connection>
                 <connection id="dev">
-                    <adapter>sqlite</adapter>
+                    <adapter>mysql</adapter>
                     <classname>Propel\Runtime\Connection\ConnectionWrapper</classname>
-                    <dsn>sqlite:data.db</dsn>
-                    <user></user>
+                    <dsn>mysql:host=localhost;dbname=wh</dsn>
+                    <user>root</user>
                     <password></password>
                 </connection>
                 <connection id="test">
