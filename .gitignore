@@ -3,3 +3,17 @@ vendor
 
 node_modules/
 bower_modules/
+/data.db
+/.idea/codeStyleSettings.xml
+/.idea/dataSources.ids
+/.idea/dataSources.xml
+/.idea/sqldialects.xml
+/.idea/vagrant.xml
+/.idea/workspace.xml
+/.vagrant/
+/README.html
+/bin/propel
+/sql/
+/web/app/
+/web/components/
+/web/css/
