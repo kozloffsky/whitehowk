@@ -30,6 +30,7 @@
         "symfony/event-dispatcher":"2.5.*",
         "symfony/http-kernel":"2.5.*",
         "symfony/finder":"2.5.*",
+        "symfony/security":"2.5.*",
         "twig/twig": "1.*",
         "propel/propel": "dev-master",
         "zendframework/zend-config": "2.3.*"
