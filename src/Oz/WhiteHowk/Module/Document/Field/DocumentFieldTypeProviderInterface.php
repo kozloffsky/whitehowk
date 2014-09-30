@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: miho
- * Date: 23.09.14
- * Time: 1:34
- */
 
-namespace Oz\WhiteHowk\Module\Core\Document;
+namespace Oz\WhiteHowk\Module\Document\Field;
 
 
 interface DocumentFieldTypeProviderInterface {

@@ -13,7 +13,7 @@
                 <connection id="dev">
                     <adapter>mysql</adapter>
                     <classname>Propel\Runtime\Connection\ConnectionWrapper</classname>
-                    <dsn>mysql:host=localhost;dbname=wh</dsn>
+                    <dsn>mysql:host=127.0.0.1;dbname=wh</dsn>
                     <user>root</user>
                     <password></password>
                 </connection>

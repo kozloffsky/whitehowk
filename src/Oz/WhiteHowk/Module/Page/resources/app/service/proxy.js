@@ -20,6 +20,7 @@ define(['jquery','knockout'], function($, ko){
                 }
             ).fail(function(){
                     console.log('Fail load service call');
+                    d.reject();
                 }
             );
 

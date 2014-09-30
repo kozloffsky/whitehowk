@@ -8,6 +8,7 @@
         <parameter key="kernel.app_kernel.class">\Oz\WhiteHowk\Kernel\AppKernel</parameter>
         <parameter key="modules" type="collection">
             <parameter>\Oz\WhiteHowk\Module\Core</parameter>
+            <parameter>\Oz\WhiteHowk\Module\Security</parameter>
             <parameter>\Oz\WhiteHowk\Module\Page</parameter>
             <parameter>\Oz\WhiteHowk\Module\Twig</parameter>
             <parameter>\Oz\WhiteHowk\Module\Document</parameter>

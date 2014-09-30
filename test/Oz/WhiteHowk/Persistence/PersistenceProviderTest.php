@@ -9,6 +9,7 @@
 namespace Oz\WhiteHowk\Persistence;
 
 
+use Oz\WhiteHowk\Module\Core\Persistence\PersistenceProvider;
 use Propel\Generator\Config\GeneratorConfig;
 
 class PersistenceProviderTest extends \PHPUnit_Framework_TestCase{

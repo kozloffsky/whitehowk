@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<database name="dev" defaultMethod="native" namespace="Oz\WhiteHowk\Module\Security\Domain" >
+    <!-- Table for storing config values -->
+    <table name="user" phpName="UserEntity">
+        <column name="email" type="varchar" required="true" />
+        <column name="password" type="varchar" required="true" />
+        <behavior name="auto_add_pk" />
+        <behavior name="timestampable" />
+        <behavior name="validate">
+            <parameter name="email_not_null" value="{column: email, validator: NotNull}" />
+            <parameter name="email_valid" value="{column: email, validator: Email}" />
+            <parameter name="password_not_null" value="{column: password, validator: NotNull}" />
+        </behavior>
+    </table>
+</database>

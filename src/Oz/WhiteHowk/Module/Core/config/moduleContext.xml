@@ -65,10 +65,6 @@
             <tag name="cli.command" />
         </service>
 
-        <!-- Field Types -->
-        <service class="Oz\WhiteHowk\Module\Core\Document\StringFieldProvider">
-            <tag name="document.field_type_provider" />
-        </service>
     </services>
 </container>
 

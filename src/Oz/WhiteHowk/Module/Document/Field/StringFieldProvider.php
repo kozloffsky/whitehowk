@@ -6,7 +6,7 @@
  * Time: 1:40
  */
 
-namespace Oz\WhiteHowk\Module\Core\Document;
+namespace Oz\WhiteHowk\Module\Document\Field;
 
 
 class StringFieldProvider implements DocumentFieldTypeProviderInterface{
@@ -21,12 +21,12 @@ class StringFieldProvider implements DocumentFieldTypeProviderInterface{
 
     public function getEditor()
     {
-        // TODO: Implement getEditor() method.
+        return "string-field-editor";
     }
 
     public function getRenderer()
     {
-        // TODO: Implement getRenderer() method.
+        return "string-field-renderer";
     }
 
     /**
