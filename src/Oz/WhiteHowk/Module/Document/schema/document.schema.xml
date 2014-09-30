@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<database name="dev" defaultMethod="native" namespace="Oz\WhiteHowk\Module\Document\Domain" >
+    <!--
+    This table represents Document entity.
+    Each document has it`s type.
+    Document can have parent document and child documents
+    -->
+    <table name="document" phpName="Document">
+        <behavior name="auto_add_pk" />
+        <column name="title" type="varchar" required="true"/>
+        <column name="type_id" type="integer" required="true"/>
+        <foreign-key foreignTable="document_type">
+            <reference local="type_id" foreign="id"/>
+        </foreign-key>
+        <behavior name="sluggable">
+            <parameter name="slug_column" value="title" />
+        </behavior>
+        <behavior name="nested_set" />
+        <behavior name="timestampable" />
+    </table>
+
+    <!--
+    This table holds information about document types that exists in system
+    -->
+    <table name="document_type" phpName="DocumentType">
+        <behavior name="auto_add_pk" />
+        <column name="name" type="varchar" required="true" />
+    </table>
+
+    <!--
+        concrete field that belongs to document type
+        field should have field type reference and it`s sort order
+    -->
+    <table name="document_type_field" phpName="DocumentTypeField">
+        <behavior name="auto_add_pk" />
+        <column name="name" />
+        <column name="document_type_id" type="integer" required="true" />
+        <column name="document_filed_type_id" type="integer" required="true"/>
+        <behavior name="sortable">
+            <parameter name="use_scope" value="true" />
+            <parameter name="scope_column" value="document_type_id" />
+        </behavior>
+        <foreign-key foreignTable="document_type">
+            <reference local="document_type_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="document_field_type">
+            <reference local="document_filed_type_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="document_field_type" phpName="DocumentFieldType">
+        <behavior name="auto_add_pk" />
+        <column name="name" type="varchar" required="true" />
+    </table>
+
+    <table name="document_field_value" phpName="DocumentFieldValue">
+        <behavior name="auto_add_pk" />
+        <!-- serialized value fo field -->
+        <column name="value" type="varchar" />
+        <column name="document_id" type="integer" />
+        <column name="document_field_type_id" type="integer" />
+        <foreign-key foreignTable="document">
+            <reference local="document_id" foreign="id"/>
+        </foreign-key>
+    </table>
+</database>

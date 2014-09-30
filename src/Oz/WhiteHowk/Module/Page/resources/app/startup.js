@@ -6,7 +6,7 @@ define(['jquery', 'knockout', 'app/router', 'bootstrap', 'knockout-projections']
 
   // ... or for template-only components, you can just point to a .html file directly:
   ko.components.register('about-page', {
-    template: { require: 'text!/components/about-page/about.html' }
+    template: { require: 'text!/components/about-page/about-page.html' }
   });
 
   // Start the application

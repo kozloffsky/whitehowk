@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="oz.document.version">0.0.1</parameter>
+        <parameter key="oz.document.stability">draft</parameter>
+        <parameter key="oz.document.description">Here should be module description</parameter>
+
+        <parameter key="oz.document.remote_routes" type="collection">
+            <parameter type="collection">
+                <parameter key="name">test_route</parameter>
+                <parameter key="path">/test</parameter>
+                <parameter key="component">document-view</parameter>
+            </parameter>
+        </parameter>
+    </parameters>
+
+    <services>
+        <service id="document.remote_routes_collection" class="\ArrayObject">
+            <argument type="collection">
+                <argument type="collection">
+                    <argument key="name">test_route</argument>
+                    <argument key="path">/test</argument>
+                    <argument key="component">test-view</argument>
+                </argument>
+            </argument>
+            <tag name="page.remote_routes_collection" />
+        </service>
+    </services>
+</container>
+

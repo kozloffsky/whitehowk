@@ -2,18 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: miho
- * Date: 15.09.14
- * Time: 14:59
+ * Date: 30.09.14
+ * Time: 2:18
  */
 
-namespace Oz\WhiteHowk\Module\Page;
+namespace Oz\WhiteHowk\Module\Document;
 
 
 use Oz\WhiteHowk\Kernel\ModuleProviderInterface;
-use Oz\WhiteHowk\Module\Page\DependencyInjection\RemoteRouteResolverPass;
-use Oz\WhiteHowk\Module\Page\DependencyInjection\ServiceResolverPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 
 class ModuleProvider implements ModuleProviderInterface
 {
@@ -23,7 +20,7 @@ class ModuleProvider implements ModuleProviderInterface
      */
     public function getName()
     {
-        return 'oz/page';
+        return 'oz/document';
     }
 
     /**
@@ -34,7 +31,7 @@ class ModuleProvider implements ModuleProviderInterface
     {
         return array(
             'oz/core',
-            'oz/twig'
+            'oz/page'
         );
     }
 
@@ -46,12 +43,7 @@ class ModuleProvider implements ModuleProviderInterface
      */
     public function boot(ContainerBuilder $container)
     {
-        $container->setDefinition('page.service_resolver', new Definition('Oz\WhiteHowk\Module\Page\Service\ServiceResolver'));
-        $container->addCompilerPass(new ServiceResolverPass());
 
-        $container->setDefinition('page.remote_route_resolver', new Definition('Oz\WhiteHowk\Module\Page\Service\RemoteRouteResolver'));
-        $container->addCompilerPass(new RemoteRouteResolverPass());
     }
 
 }
-

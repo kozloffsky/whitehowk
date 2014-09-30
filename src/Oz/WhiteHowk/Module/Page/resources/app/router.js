@@ -30,8 +30,10 @@ define(["knockout", "crossroads", "hasher","app/service/proxy"], function(ko, cr
         //TODO: make service call to get component for this url or error
         console.log('New Hash is',hash);
         proxy.call('router',{hash: hash}).done(function(data){
-            ko.components.register(data.componentName, {require:'components/'+data.componentName+'/'+data.component});
-            this.currentRoute({page: data.componentName});
+            if(!ko.components.isRegistered(data.component)){
+                ko.components.register(data.component, {require:'components/'+data.component+'/'+data.component});
+            }
+            this.currentRoute({page: data.component});
         }.bind(this));
     }
 

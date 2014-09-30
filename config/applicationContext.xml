@@ -10,6 +10,9 @@
             <parameter>\Oz\WhiteHowk\Module\Core</parameter>
             <parameter>\Oz\WhiteHowk\Module\Page</parameter>
             <parameter>\Oz\WhiteHowk\Module\Twig</parameter>
+            <parameter>\Oz\WhiteHowk\Module\Document</parameter>
         </parameter>
     </parameters>
 </container>
+
+

@@ -12,7 +12,7 @@ namespace Oz\WhiteHowk\Module\Page\DependencyInjection;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class ServiceResolverCompilerPass implements CompilerPassInterface{
+class ServiceResolverPass implements CompilerPassInterface{
     /**
      * You can modify the container here before it is dumped to PHP code.
      *
