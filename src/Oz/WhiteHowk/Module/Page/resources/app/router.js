@@ -33,7 +33,7 @@ define(["knockout", "crossroads", "hasher","app/service/proxy"], function(ko, cr
             if(!ko.components.isRegistered(data.component)){
                 ko.components.register(data.component, {require:'components/'+data.component+'/'+data.component});
             }
-            this.currentRoute({page: data.component});
+            this.currentRoute(data.component);
         }.bind(this));
     }
 
