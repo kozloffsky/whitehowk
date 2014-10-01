@@ -9,7 +9,7 @@
 namespace Oz\WhiteHowk\Module\Core\Service;
 
 
-use Oz\WhiteHowk\Module\Core\Document\DocumentFieldTypeProviderInterface;
+use Oz\WhiteHowk\Module\Document\Field\DocumentFieldTypeProviderInterface;
 
 class DocumentFieldTypeResolver {
 

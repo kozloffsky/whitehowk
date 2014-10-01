@@ -33,7 +33,7 @@ class PersistenceProvider {
         $this->initialize();
     }
 
-    public function initialize(){
+    protected function initialize(){
         $env = 'dev';
         $config = $this->getConnectionConfig($env);
         $serviceContainer = Propel::getServiceContainer();

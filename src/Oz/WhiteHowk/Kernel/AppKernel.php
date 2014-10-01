@@ -7,6 +7,7 @@
  */
 
 namespace Oz\WhiteHowk\Kernel;
+use Oz\WhiteHowk\Kernel\Aop\ProxyGenerator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -121,6 +122,8 @@ class AppKernel {
     public function boot(){
         $this->_moduleResolver->resolve();
 
+        $this->initAop();
+
         $this->_containerProvider->compile();
 
         $this->_eventDispatcher = $this->_containerProvider->provide()->get('event_dispatcher');
@@ -133,5 +136,24 @@ class AppKernel {
         $response = $this->_controllerDispatcher->dispatch($request);
         $this->_eventDispatcher->dispatch(KernelEvent::POST_DISPATCH, new KernelEvent($request, $response));
         $response->send();
+    }
+
+    protected function initAop(){
+        $container = $this->_containerProvider->provide();
+        $generator = new ProxyGenerator($container->getParameter('root').'/cache/proxy/');
+        foreach($container->getDefinitions() as $id => $definition){
+            $oldClass = $definition->getClass();
+            if($id == 'event_dispatcher'){
+                continue;
+            }
+            $definition->setClass($generator->generate($oldClass));
+
+            $arguments = $definition->getArguments();
+            $newArgs = array($container->getDefinition('event_dispatcher'));
+            foreach($arguments as $argument){
+                array_push($newArgs, $argument);
+            }
+            $definition->setArguments($newArgs);
+        }
     }
 }
