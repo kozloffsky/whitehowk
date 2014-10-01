@@ -7,4 +7,12 @@
         <parameter key="oz.security.version">0.1-dev</parameter>
         <parameter key="oz.security.description">Here should be module description</parameter>
     </parameters>
+
+    <services>
+        <service id="security.access_manager" class="Oz\WhiteHowk\Module\Security\Core\AccessManager">
+            <tag name="kernel.no_proxy" />
+            <tag name="kernel.event_listener" event="kernel.pre_dispatch" method="onPreDispatch"/>
+            <tag name="kernel.event_listener" event="method.pre_invoke" method="onMethodPreInvoke"/>
+        </service>
+    </services>
 </container>

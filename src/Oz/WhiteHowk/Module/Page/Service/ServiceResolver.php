@@ -14,11 +14,9 @@ class ServiceResolver
 
     protected $_services;
 
-    public function addService($id, $service, $methods)
+    public function addService($id, $service)
     {
-        $proxy = new ServiceProxy($service);
-        $proxy->allowMethods($methods);
-        $this->_services[$id] = $proxy;
+        $this->_services[$id] = $service;
     }
 
     public function callServiceMethod($id, $method, $args = array())
@@ -28,7 +26,7 @@ class ServiceResolver
         }
 
         $proxy = $this->_services[$id];
-        return $proxy->call($method, $args);
+        return call_user_func_array(array($proxy, $method), $args);
     }
 
     public function hasService($id)

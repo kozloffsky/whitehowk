@@ -143,7 +143,8 @@ class AppKernel {
         $generator = new ProxyGenerator($container->getParameter('root').'/cache/proxy/');
         foreach($container->getDefinitions() as $id => $definition){
             $oldClass = $definition->getClass();
-            if($id == 'event_dispatcher'){
+            //TODO: make only no_proxy methods that marked as event listeners for method invoke events
+            if($id == 'event_dispatcher' || $definition->hasTag('kernel.no_proxy')){
                 continue;
             }
             $definition->setClass($generator->generate($oldClass));

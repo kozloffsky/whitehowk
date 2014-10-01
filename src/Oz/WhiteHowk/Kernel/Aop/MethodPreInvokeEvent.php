@@ -13,6 +13,8 @@ use Symfony\Component\EventDispatcher\Event;
 
 class MethodPreInvokeEvent extends Event {
 
+    const PRE_INVOKE_EVENT = 'method.pre_invoke';
+
     protected $args;
 
     protected $object;
@@ -24,7 +26,6 @@ class MethodPreInvokeEvent extends Event {
         $this->args = $args;
         $this->methodName = $methodName;
         $this->object = $object;
-        echo "Method invoked ".$methodName.''.get_class($object)."\n";
     }
 
     /**

@@ -21,14 +21,14 @@
         <service id="document.remote_routes_collection" class="\ArrayObject">
             <argument type="collection">
                 <argument type="collection">
-                    <argument key="name">document_list</argument>
-                    <argument key="path">/documents</argument>
-                    <argument key="component">documents-list-view</argument>
+                    <argument key="name">document_view</argument>
+                    <argument key="path">/document/{slug}</argument>
+                    <argument key="component">documents-view</argument>
                 </argument>
                 <argument type="collection">
-                    <argument key="name">document_view</argument>
-                    <argument key="path">/documents/{slug}</argument>
-                    <argument key="component">documents-list-view</argument>
+                    <argument key="name">document_list</argument>
+                    <argument key="path">/documents/</argument>
+                    <argument key="component">documents-list</argument>
                 </argument>
             </argument>
             <tag name="page.remote_routes_collection" />

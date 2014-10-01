@@ -30,8 +30,6 @@ class ProxyGenerator
     {
         $this->_class = new \ReflectionClass($class);
 
-        echo($this->getProxyClass()."\n");
-
         $fileContents = $this->getFileHead() . "\n\n"
             . $this->getProxyClassNamespace() . "\n\n"
             . $this->getProxyClassDefinition() . "\n"
@@ -131,8 +129,7 @@ class ProxyGenerator
         $result .= '$preEvent = new \Oz\WhiteHowk\Kernel\Aop\MethodPreInvokeEvent(func_get_args(), "' . $method->getName(
             ) . '", $this);' . "\n";
 
-        $result .= '$ed->dispatch("' . $method->getDeclaringClass()->getShortName(
-            ) . '.pre_' . $method->getName() . '", $preEvent);' . "\n";
+        $result .= '$ed->dispatch(\Oz\WhiteHowk\Kernel\Aop\MethodPreInvokeEvent::PRE_INVOKE_EVENT, $preEvent);' . "\n";
 
         $result .= 'if($preEvent->isPropagationStopped()){' . "\n";
 
@@ -158,8 +155,7 @@ class ProxyGenerator
         $result .= '$postEvent = new \Oz\WhiteHowk\Kernel\Aop\MethodPostInvokeEvent($result, func_get_args(), "'
             . $method->getName() . '", $this);' . "\n";
 
-        $result .= '$ed->dispatch("' . $method->getDeclaringClass()->getShortName(
-            ) . '.post_' . $method->getName() . '", $postEvent);' . "\n";
+        $result .= '$ed->dispatch(\Oz\WhiteHowk\Kernel\Aop\MethodPostInvokeEvent::POST_INVOKE_EVENT, $postEvent);' . "\n";
 
         $result .= '$this->setEventDispatcher($ed);'."\n";
 

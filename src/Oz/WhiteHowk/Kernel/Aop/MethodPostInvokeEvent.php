@@ -13,6 +13,8 @@ class MethodPostInvokeEvent extends MethodPreInvokeEvent{
 
     protected $result;
 
+    const POST_INVOKE_EVENT = 'method.post_invoke';
+
     public function __construct($result, $args, $methodName, $object)
     {
         parent::__construct($args, $methodName, $object);
