@@ -10,7 +10,7 @@ namespace Oz\WhiteHowk\Module\Security\Service;
 
 
 use Oz\WhiteHowk\Module\Security\Domain\UserEntity;
-use Propel\Runtime\Map\TableMap;
+
 
 class UserService {
 

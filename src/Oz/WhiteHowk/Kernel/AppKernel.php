@@ -48,12 +48,13 @@ class AppKernel {
     /**
      * AppKernel constructor. Initializes DI and other services
      * @param $rootPath
+     * @param $configPath
      * @throws ConfigurationException
      */
-    public function __construct($rootPath){
+    public function __construct($rootPath, $configPath = 'config'){
         $this->_containerProvider = new ContainerProvider();
         $this->_containerProvider->provide()->setParameter('root', $rootPath);
-        $this->_containerProvider->addContext($rootPath.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'applicationContext.xml');
+        $this->_containerProvider->addContext($rootPath.DIRECTORY_SEPARATOR.$configPath.DIRECTORY_SEPARATOR.'applicationContext.xml');
 
         $this->_moduleResolver = new ModuleResolver($this->_containerProvider);
         $this->_moduleResolver->setNamespaces($this->_containerProvider->provide()->getParameter('modules'));
