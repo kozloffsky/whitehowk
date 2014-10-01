@@ -32,7 +32,7 @@ class AccessManager {
     }
 
     public function onMethodPreInvoke(MethodPreInvokeEvent $event){
-        echo $event->getMethodName();
+
     }
 
 } 

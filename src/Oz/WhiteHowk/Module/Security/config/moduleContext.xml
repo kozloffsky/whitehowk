@@ -14,5 +14,26 @@
             <tag name="kernel.event_listener" event="kernel.pre_dispatch" method="onPreDispatch"/>
             <tag name="kernel.event_listener" event="method.pre_invoke" method="onMethodPreInvoke"/>
         </service>
+
+        <service id="security.user_service" class="Oz\WhiteHowk\Module\Security\Service\UserService">
+            <tag name="page.remote_service" methods="register"/>
+        </service>
+
+        <!-- routes -->
+        <service id="security.remote_routes_collection" class="\ArrayObject">
+            <argument type="collection">
+                <argument type="collection">
+                    <argument key="name">security_login</argument>
+                    <argument key="path">login</argument>
+                    <argument key="component">login-view</argument>
+                </argument>
+                <argument type="collection">
+                    <argument key="name">security_register</argument>
+                    <argument key="path">registration</argument>
+                    <argument key="component">registration-view</argument>
+                </argument>
+            </argument>
+            <tag name="page.remote_routes_collection" />
+        </service>
     </services>
 </container>

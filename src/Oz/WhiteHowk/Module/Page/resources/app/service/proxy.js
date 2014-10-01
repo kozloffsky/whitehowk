@@ -5,13 +5,13 @@ define(['jquery','knockout'], function($, ko){
     }
 
     Proxy.prototype = {
-        call:function(name, args){
+        call:function(service, method, args){
             var d = $.Deferred();
             $.post(
                 "/service",
                 JSON.stringify({
-                    service: 'page.router_service',
-                    method: 'route',
+                    service: service,
+                    method: method,
                     args: args
                 })
             ).done(function(data){

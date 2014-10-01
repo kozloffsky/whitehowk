@@ -14,15 +14,16 @@ use Propel\Runtime\Map\TableMap;
 
 class UserService {
 
-    public function registerUser($userData){
+    public function register($email, $password){
         $entity = new UserEntity();
-        $entity->fromArray($userData, TableMap::TYPE_CAMELNAME);
+        $entity->setEmail($email);
+        $entity->setPassword($password);
 
         if(!$entity->validate()){
-            return $entity->getValidationFailures();
+            return $entity->getValidationFailures()->__toString();
         }
 
-        $entity->save();
+        return $entity->save();
     }
 
 } 
