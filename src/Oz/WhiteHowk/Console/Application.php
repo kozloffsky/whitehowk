@@ -9,15 +9,14 @@
 namespace Oz\WhiteHowk\Console;
 
 
-use Oz\WhiteHowk\Kernel\AppKernel;
-use Oz\WhiteHowk\Kernel\ContainerProvider;
+use Oz\WhiteHowk\Kernel\Kernel;
 
 class Application extends \Symfony\Component\Console\Application{
 
     public function __construct(){
         parent::__construct();
 
-        $kernel = new AppKernel(getcwd());
+        $kernel = new Kernel(getcwd());
 
         $container = $kernel->getContainerProvider();
         $context = $container->provide();

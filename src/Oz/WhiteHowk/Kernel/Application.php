@@ -61,7 +61,7 @@ class Application {
     }
 
     private function initializeKernel(){
-        $kernel = new AppKernel($this->_rootDir);
+        $kernel = new WebKernel($this->_rootDir);
         return $kernel;
     }
 

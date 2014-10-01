@@ -2,63 +2,33 @@
 /**
  * Created by PhpStorm.
  * User: miho
- * Date: 15.09.14
- * Time: 0:21
+ * Date: 01.10.14
+ * Time: 23:54
  */
 
 namespace Oz\WhiteHowk\Kernel;
-use Oz\WhiteHowk\Kernel\Aop\ProxyGenerator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 
-/**
- * Class AppKernel
- * @package Oz\WhiteHowk\Kernel
- */
-class AppKernel {
-    /**
-     * @var ModuleResolver
-     */
-    private $_moduleResolver;
-
-    /**
-     * @var EventDispatcher
-     */
-    private $_eventDispatcher;
+class WebKernel extends Kernel{
 
     /**
      * @var Router
      */
-    private $_router;
+    protected $_router;
 
     /**
      * @var ControllerDispatcher
      */
-    private $_controllerDispatcher;
+    protected $_controllerDispatcher;
 
-    /**
-     * @var ContainerProvider
-     */
-    private $_containerProvider;
-
-    /**
+     /**
      * AppKernel constructor. Initializes DI and other services
      * @param $rootPath
      * @param $configPath
      * @throws ConfigurationException
      */
     public function __construct($rootPath, $configPath = 'config'){
-        $this->_containerProvider = new ContainerProvider();
-        $this->_containerProvider->provide()->setParameter('root', $rootPath);
-        $this->_containerProvider->addContext($rootPath.DIRECTORY_SEPARATOR.$configPath.DIRECTORY_SEPARATOR.'applicationContext.xml');
-
-        $this->_moduleResolver = new ModuleResolver($this->_containerProvider);
-        $this->_moduleResolver->setNamespaces($this->_containerProvider->provide()->getParameter('modules'));
-        $this->_containerProvider->provide()->set('kernel.module_resolver', $this->_moduleResolver);
+        parent::__construct($rootPath, $configPath);
 
         $this->_router = new Router();
         $this->_router->setContainer($this->_containerProvider->provide());
@@ -70,27 +40,6 @@ class AppKernel {
     }
 
     /**
-     * @param ModuleResolver $moduleResolver
-     */
-    public function setModuleResolver(ModuleResolver $moduleResolver){
-        $this->_moduleResolver = $moduleResolver;
-    }
-
-    /**
-     * @return ModuleResolver
-     */
-    public function getModuleResolver(){
-        return $this->_moduleResolver;
-    }
-
-    /**
-     * @param EventDispatcherInterface $dispatcher
-     */
-    public function setEventDispatcher(EventDispatcherInterface $dispatcher){
-        $this->_eventDispatcher = $dispatcher;
-    }
-
-    /**
      * @param Router $router
      */
     public function setRouter(Router $router){
@@ -98,10 +47,11 @@ class AppKernel {
     }
 
     /**
-     * @return ContainerProvider
+     * @return \Oz\WhiteHowk\Kernel\Router
      */
-    public function getContainerProvider(){
-        return $this->_containerProvider;
+    public function getRouter()
+    {
+        return $this->_router;
     }
 
     /**
@@ -112,7 +62,6 @@ class AppKernel {
         $this->_controllerDispatcher = $controllerDispatcher;
     }
 
-
     /**
      * Here all boot logic.
      * Modules initialization and bootstrapping.
@@ -121,18 +70,12 @@ class AppKernel {
      * TODO: may be separate bootstrap logic from dispatching?
      */
     public function boot(){
-        $this->_moduleResolver->resolve();
-
-        $this->initAop();
-
-        $this->_containerProvider->compile();
-
-        $this->_eventDispatcher = $this->_containerProvider->provide()->get('event_dispatcher');
-
-        $this->_eventDispatcher->dispatch(KernelEvent::BOOT, new KernelEvent(null, null));
+        parent::boot();
 
         $request = Request::createFromGlobals();
         $this->_router->route($request);
+
+        //TODO: move Dispatch events to ControllerDispatcherEvent
         $this->_eventDispatcher->dispatch(KernelEvent::PRE_DISPATCH, new KernelEvent($request, null));
         $response = $this->_controllerDispatcher->dispatch($request);
         $this->_eventDispatcher->dispatch(KernelEvent::POST_DISPATCH, new KernelEvent($request, $response));
@@ -158,4 +101,8 @@ class AppKernel {
             $definition->setArguments($newArgs);
         }
     }
+
+
+
+
 }
