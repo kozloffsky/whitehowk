@@ -11,5 +11,8 @@
             <parameter name="email_valid" value="{column: email, validator: Email}" />
             <parameter name="password_not_null" value="{column: password, validator: NotNull}" />
         </behavior>
+        <unique>
+            <unique-column name="email" />
+        </unique>
     </table>
 </database>

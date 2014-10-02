@@ -16,7 +16,11 @@ define(['jquery','knockout'], function($, ko){
                 })
             ).done(function(data){
                     console.log('OK! resounse is ', data);
-                    d.resolve(data.result);
+                    if(data.status == 'ok'){
+                        d.resolve(data.result);
+                    }else{
+                        d.reject(data.result.errors);
+                    }
                 }
             ).fail(function(){
                     console.log('Fail load service call');

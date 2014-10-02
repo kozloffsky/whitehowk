@@ -39,12 +39,13 @@ class Kernel {
      * AppKernel constructor. Initializes DI and other services
      * @param $rootPath
      * @param $configPath
+     * @param $contextName
      * @throws ConfigurationException
      */
-    public function __construct($rootPath, $configPath = 'config'){
+    public function __construct($rootPath, $configPath = 'config',$contextName = 'applicationContext'){
         $this->_containerProvider = new ContainerProvider();
         $this->_containerProvider->provide()->setParameter('root', $rootPath);
-        $this->_containerProvider->addContext($rootPath.DIRECTORY_SEPARATOR.$configPath.DIRECTORY_SEPARATOR.'applicationContext.xml');
+        $this->_containerProvider->addContext($rootPath.DIRECTORY_SEPARATOR.$configPath.DIRECTORY_SEPARATOR.$contextName.'.xml');
 
         $this->_moduleResolver = new ModuleResolver($this->_containerProvider);
         $this->_moduleResolver->setNamespaces($this->_containerProvider->provide()->getParameter('modules'));
@@ -87,7 +88,6 @@ class Kernel {
      * Modules initialization and bootstrapping.
      * Request bootstrap.
      * Controller dispatching
-     * TODO: may be separate bootstrap logic from dispatching?
      */
     public function boot(){
         $this->_moduleResolver->resolve();

@@ -9,6 +9,9 @@
 namespace Oz\WhiteHowk\Kernel;
 
 
+use Oz\WhiteHowk\Kernel\Aop\ProxyGenerator;
+use Symfony\Component\HttpFoundation\Request;
+
 class WebKernel extends Kernel{
 
     /**
@@ -67,7 +70,6 @@ class WebKernel extends Kernel{
      * Modules initialization and bootstrapping.
      * Request bootstrap.
      * Controller dispatching
-     * TODO: may be separate bootstrap logic from dispatching?
      */
     public function boot(){
         parent::boot();

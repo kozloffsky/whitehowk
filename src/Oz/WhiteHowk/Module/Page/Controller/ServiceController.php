@@ -9,6 +9,7 @@
 namespace Oz\WhiteHowk\Module\Page\Controller;
 
 
+use Oz\WhiteHowk\Module\Page\Controller\Exception\ServiceErrorException;
 use Oz\WhiteHowk\Module\Page\Service\ServiceResolver;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,10 +26,19 @@ class ServiceController {
 
     public function dispatch(Request $request){
         $jsonRequest = json_decode($request->getContent(), true);
+        $status = "ok";
 
-        $result = $this->_serviceResolver->callServiceMethod($jsonRequest['service'], $jsonRequest['method'], $jsonRequest['args']);
+        try{
+            $result = $this->_serviceResolver->callServiceMethod($jsonRequest['service'], $jsonRequest['method'], $jsonRequest['args']);
+        }catch (ServiceErrorException $ex){
+            $result = array('errors'=>$ex->getData());
+            $status = "error";
+        }catch(\Exception $e){
+            $status = "error";
+            $result = array('errors'=>array($e->getMessage()));
+        }
 
-        return new JsonResponse(array('status'=>'ok', 'result'=>$result));
+        return new JsonResponse(array('status'=>$status, 'result'=>$result));
     }
 
 

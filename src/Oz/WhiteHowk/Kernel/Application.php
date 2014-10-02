@@ -20,8 +20,6 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
  * 4. Generate response
  *
  * TODO: Should application provide public API?
- * TODO: Move AppKernel and ModuleResolver out from context
- * TODO: Seems that AppKernel and Application can be merged into one class AppKernel
  * @package Oz\WhiteHowk\Kernel
  */
 class Application {

@@ -27,7 +27,6 @@ define(["knockout", "crossroads", "hasher","app/service/proxy"], function(ko, cr
     }
 
     Router.prototype.checkHash = function(hash, oldHash) {
-        //TODO: make service call to get component for this url or error
         console.log('New Hash is',hash);
         proxy.call('page.router_service','route',{hash: hash}).done(function(data){
             if(!ko.components.isRegistered(data.component)){
