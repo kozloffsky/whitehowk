@@ -1,16 +1,16 @@
 <div data-bind="foreach: errors">
     <alert params = "type: 'error', text: message"/>
 </div>
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" data-bind="submit: register">
     <div class="form-group">
         <label class="label" for="email">Email</label>
-        <input type="email" name="email" id="email" data-bind="value: email" class="form-control"/>
+        <input type="email" name="email" id="email" data-bind="value: email" class="form-control" required/>
     </div>
     <div class="form-group">
         <label class="label" for="password">Email</label>
-        <input type="password" name="password" id="password" data-bind="value: password" class="form-control"/>
+        <input type="password" name="password" id="password" data-bind="value: password" class="form-control" required/>
     </div>
     <div class="form-group">
-        <input type="submit" data-bind="click: register" class="btn-lg" value="Register" />
+        <input type="submit"  class="btn-lg" value="Register" />
     </div>
 </form>

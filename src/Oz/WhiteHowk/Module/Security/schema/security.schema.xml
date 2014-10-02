@@ -8,8 +8,10 @@
         <behavior name="timestampable" />
         <behavior name="validate">
             <parameter name="email_not_null" value="{column: email, validator: NotNull}" />
+            <parameter name="email_not_blank" value="{column: email, validator: NotBlank}" />
             <parameter name="email_valid" value="{column: email, validator: Email}" />
             <parameter name="password_not_null" value="{column: password, validator: NotNull}" />
+            <parameter name="password_not_blank" value="{column: password, validator: NotBlank}" />
         </behavior>
         <unique>
             <unique-column name="email" />

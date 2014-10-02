@@ -9,7 +9,7 @@ define(["knockout", "text!./registration-view.html", "app/service/proxy", "jquer
         this.register = function(){
             proxy.call('security.user_service', 'register', {email: this.email(), password: this.password()})
                 .done(function(data){
-                    console.log(data);
+                    window.location.hash = "about";
                 }).fail(function(errors){
                     $.each(errors, function(index, value){
                         this.errors.push(value);
