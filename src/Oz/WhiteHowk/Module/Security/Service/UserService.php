@@ -44,4 +44,4 @@ class UserService {
         return $count == 0;
     }
 
-} 
+}

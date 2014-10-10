@@ -16,6 +16,10 @@
         {
             "type": "git",
             "url": "https://github.com/propelorm/Propel2"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/amphp/amp.git"
         }
     ],
 
@@ -33,7 +37,8 @@
         "symfony/security":"2.5.*",
         "twig/twig": "1.*",
         "propel/propel": "dev-master",
-        "zendframework/zend-config": "2.3.*"
+        "zendframework/zend-config": "2.3.*",
+        "amphp/amp": "1.0.x-dev"
 
     },
 
