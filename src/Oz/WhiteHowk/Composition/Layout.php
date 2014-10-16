@@ -7,15 +7,16 @@
  */
 
 namespace Oz\WhiteHowk\Composition;
+use Symfony\Component\Config\FileLocator;
 
 
 /**
  * Class Layout
  * @package Oz\WhiteHowk\Composition
  */
-class Layout {
+class Layout extends BlockAbstract{
 
-    public function setConfiguration(){
+    public function __construct($config){
 
     }
 

@@ -1,10 +1,6 @@
 <?xml version="1.0" ?>
-<html xmlns:cs="\Oz\WhiteHowk\Composition\Components" xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <cs:style id="styles" />
-    </head>
-    <body>
-        <cs:block id="content" />
-        <cs:javascripts id="scripts" />
-    </body>
-</html>
+<composition>
+    <block name="layout_main" type="template" template="layout/main">
+
+    </block>
+</composition>

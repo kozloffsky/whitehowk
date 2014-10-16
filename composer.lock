@@ -4,71 +4,8 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c7d0f3b506c86f191d0098dc40b00fa6",
+    "hash": "5eef239533ddcd604010dfdff1720307",
     "packages": [
-        {
-            "name": "amphp/amp",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/amphp/amp.git",
-                "reference": "bd1cf641016b2760ac6e0b005d0287204751d959"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/amphp/amp/zipball/bd1cf641016b2760ac6e0b005d0287204751d959",
-                "reference": "bd1cf641016b2760ac6e0b005d0287204751d959",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Amp\\": "lib/"
-                },
-                "files": [
-                    "lib/functions.php"
-                ]
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Amp\\Test\\": "test/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel Lowrey",
-                    "email": "rdlowrey@php.net",
-                    "role": "Creator / Lead Developer"
-                }
-            ],
-            "description": "A non-blocking concurrency framework for PHP applications",
-            "homepage": "https://github.com/amphp/amp",
-            "keywords": [
-                "async",
-                "concurrency",
-                "future",
-                "libevent",
-                "libuv",
-                "non-blocking",
-                "promise"
-            ],
-            "support": {
-                "source": "https://github.com/amphp/amp/tree/master",
-                "issues": "https://github.com/amphp/amp/issues"
-            },
-            "time": "2014-10-08 20:46:08"
-        },
         {
             "name": "ocramius/proxy-manager",
             "version": "0.5.2",
@@ -138,7 +75,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel2",
-                "reference": "17560d0195e3b1f7b2a178da23ad0a4e8d47877f"
+                "reference": "2302f06e5ca1424620dca5636229d8cab8583781"
             },
             "require": {
                 "php": ">=5.4",
@@ -188,7 +125,7 @@
                 "ORM",
                 "persistence"
             ],
-            "time": "2014-10-10 00:44:22"
+            "time": "2014-10-11 02:03:33"
         },
         {
             "name": "psr/log",
@@ -1087,16 +1024,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.0",
+            "version": "v1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "8ce37115802e257a984a82d38254884085060024"
+                "reference": "7c4c01dcf578523cfcddf383641a4f12790270ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8ce37115802e257a984a82d38254884085060024",
-                "reference": "8ce37115802e257a984a82d38254884085060024",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/7c4c01dcf578523cfcddf383641a4f12790270ec",
+                "reference": "7c4c01dcf578523cfcddf383641a4f12790270ec",
                 "shasum": ""
             },
             "require": {
@@ -1140,7 +1077,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-07-05 12:19:05"
+            "time": "2014-10-10 14:09:53"
         },
         {
             "name": "zendframework/zend-code",
@@ -1345,20 +1282,20 @@
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "8806c41c178ad4a2e87294b851d730779555d252"
+                "reference": "f976e5de371104877ebc89bd8fecb0019ed9c119"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8806c41c178ad4a2e87294b851d730779555d252",
-                "reference": "8806c41c178ad4a2e87294b851d730779555d252",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/f976e5de371104877ebc89bd8fecb0019ed9c119",
+                "reference": "f976e5de371104877ebc89bd8fecb0019ed9c119",
                 "shasum": ""
             },
             "require": {
-                "php": "~5.3"
+                "php": ">=5.3,<8.0-DEV"
             },
             "require-dev": {
                 "athletic/athletic": "~0.1.8",
@@ -1395,7 +1332,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2014-10-04 22:48:25"
+            "time": "2014-10-13 12:58:55"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2045,8 +1982,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "propel/propel": 20,
-        "amphp/amp": 20
+        "propel/propel": 20
     },
     "prefer-stable": false,
     "platform": [

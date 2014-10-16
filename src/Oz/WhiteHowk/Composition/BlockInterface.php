@@ -19,11 +19,8 @@ interface BlockInterface {
     public function setName($name);
     public function getName();
 
-    public function setTemplatePath($path);
-    public function getTemplatePath();
+    public function setParent(BlockInterface $parent);
+    public function addChild(BlockInterface $child);
 
     public function render();
-
-    public function setRequest(Request $request);
-
 }

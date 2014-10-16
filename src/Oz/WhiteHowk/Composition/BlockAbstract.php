@@ -14,13 +14,21 @@ use Symfony\Component\HttpFoundation\Request;
 class BlockAbstract implements BlockInterface {
 
     protected $_name;
-    protected $_templatePath;
+    /**
+     * @var BlockInterface[]
+     */
     protected $_children;
     protected $_request;
+
+    /**
+     * @var BlockInterface
+     */
+    private $parent;
 
     public function setName($name)
     {
         $this->_name = $name;
+        return $this;
     }
 
     public function getName()
@@ -28,18 +36,15 @@ class BlockAbstract implements BlockInterface {
         return $this->_name;
     }
 
-    public function setTemplatePath($path)
-    {
-        $this->_templatePath = $path;
-    }
-
-    public function getTemplatePath()
-    {
-        return $this->_templatePath;
-    }
-
     public function addChild(BlockInterface $child){
         $this->_children[$child->getName()] = $child;
+        $child->setParent($this);
+        return $this;
+    }
+
+    public function setParent(BlockInterface $parent){
+        $this->parent = $parent;
+        return $this;
     }
 
     public function renderChild($name){
@@ -52,13 +57,11 @@ class BlockAbstract implements BlockInterface {
     }
 
     public function render(){
-
+        return "";
     }
 
-    public function setRequest(Request $request)
-    {
-        $this->_request = $request;
+    public function __toString(){
+        return $this->render();
     }
-
 
 } 
