@@ -7,11 +7,25 @@
         <parameter key="version">Awesome Site Title</parameter>
         <parameter key="stability">dev</parameter>
         <parameter key="modules" type="collection" />
+        <parameter key="site.layout">base</parameter>
     </parameters>
 
     <services>
+        <service id="file_system" class="Symfony\Component\Filesystem\Filesystem"/>
+
         <service id="command.new" class="Oz\NoDynamic\Console\Command\NewCommand">
             <tag name="cli.command" />
+            <call method="setResourcesRoot"><argument>%resourcesRoot%</argument></call>
+        </service>
+
+        <service id="command.build" class="Oz\NoDynamic\Console\Command\BuildCommand">
+            <tag name="cli.command" />
+            <call method="setGenerator"><argument type="service" id="site.generator" /></call>
+        </service>
+
+        <service id="site.generator" class="Oz\NoDynamic\Generator\SiteGenerator">
+            <call method="setWorkingDir"><argument>%workingDir%</argument></call>
+            <call method="setLayout"><argument>%site.layout%</argument></call>
         </service>
     </services>
 </container>

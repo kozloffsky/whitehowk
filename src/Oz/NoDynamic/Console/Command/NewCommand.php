@@ -15,6 +15,8 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Class NewCommand
@@ -25,6 +27,13 @@ use Symfony\Component\Console\Question\Question;
  */
 class NewCommand extends Command{
 
+    private $resourcesRoot;
+    private $fileSystem;
+
+    public function setResourcesRoot($resourcesRoot){
+        $this->resourcesRoot = $resourcesRoot;
+    }
+
     protected function configure(){
         $this->setName('new')
             ->setDescription('Initializes new project structure template.');
@@ -33,14 +42,19 @@ class NewCommand extends Command{
     protected function execute(InputInterface $input, OutputInterface $output){
         $helper = $this->getHelper('question');
 
-        $parser = new Parser();
-        $parser->setTokenFactory(new TokenFactory());
+        $siteName = $helper->ask($input, $output, new Question('<question>Enter your new site name: </question>'));
 
-        $output->writeln($parser->parseString("# Asdfa sdfa sdf asdf asd\n## adsf asdf asd fasd \n# sdf sd#"));
+        $this->copyResources();
+    }
 
-        $name = $helper->ask($input, $output, new Question('<question>Enter your new site name:</question>'));
-
-
+    protected function copyResources(){
+        $this->fileSystem = new Filesystem();
+        $finder = new Finder();
+        foreach($finder->in($this->resourcesRoot)->files() as $file){
+            $relativePath =  str_replace(realpath($this->resourcesRoot).'/site/','',$file->getRealPath());
+            $newPath = getcwd().DIRECTORY_SEPARATOR.$relativePath;
+            $this->fileSystem->copy($file->getRealPath(), $newPath);
+        }
     }
 
 } 

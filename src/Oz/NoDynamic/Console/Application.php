@@ -16,10 +16,19 @@ class Application extends \Symfony\Component\Console\Application{
     public function __construct(){
         parent::__construct('NoDynamic');
 
-        $kernel = new Kernel(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,'','context');
+        $kernel = new Kernel(realpath(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR),'','context');
 
         $container = $kernel->getContainerProvider();
         $context = $container->provide();
+
+        $context->setParameter('resourcesRoot', realpath(__DIR__.'/../resources'));
+
+        $context->setParameter('workingDir', getcwd());
+
+        $siteContext = getcwd().DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'nodynamic.xml';
+        if(file_exists($siteContext)){
+            $container->addContext($siteContext);
+        }
 
         $kernel->getModuleResolver()->resolve();
         $container->compile();
